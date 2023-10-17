@@ -13,3 +13,10 @@ test("Batteship object, should have 4 length, 0 hits, and not be sunk", () => {
   expect(battleShip.hits).toBe(0);
   expect(battleShip).toHaveProperty("sunk", false);
 });
+
+test("Destroyer object, should have length of 3, 0 hits and not be sunk", () => {
+  const destroyer = battleShipModel.Ship(3, 0, false);
+  expect(destroyer.length).toBe(3);
+  expect(destroyer.hits).toBe(0);
+  expect(destroyer).toHaveProperty("sunk", false);
+});
