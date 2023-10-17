@@ -1,4 +1,4 @@
-const battleShip = (() => {
+const battleShipModel = (() => {
   const Ship = (length, hits, sunk) => ({ length, hits, sunk });
 
   return {
@@ -6,4 +6,4 @@ const battleShip = (() => {
   };
 })();
 
-module.exports = battleShip;
+module.exports = battleShipModel;
