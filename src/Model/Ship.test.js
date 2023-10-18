@@ -35,42 +35,37 @@ test("Patrolboat object, should have length of 2, 0 hits, and to be sunk", () =>
   expect(patrolBoat.getShipSunk()).toBe(false);
 });
 
-test("Carrier got hit, decrease length and increase hits", () => {
+test("Carrier object got hit, increase hits", () => {
   const carrier = battleShipModel.Ship(5, 0, false);
   carrier.hit();
-  expect(carrier.getShipLength()).toBe(4);
   expect(carrier.getShipHits()).toBe(1);
   expect(carrier.getShipSunk()).toBe(false);
 });
 
-test("Battleship got hit, decrease length and increase hits", () => {
+test("Battleship object got hit, increase hits", () => {
   const battleShip = battleShipModel.Ship(4, 0, false);
   battleShip.hit();
-  expect(battleShip.getShipLength()).toBe(3);
   expect(battleShip.getShipHits()).toBe(1);
   expect(battleShip.getShipSunk()).toBe(false);
 });
 
-test("Destroyer got hit, decrease length and increase hits", () => {
+test("Destroyer object got hit, increase hits", () => {
   const destroyer = battleShipModel.Ship(3, 0, false);
   destroyer.hit();
-  expect(destroyer.getShipLength()).toBe(2);
   expect(destroyer.getShipHits()).toBe(1);
   expect(destroyer.getShipSunk()).toBe(false);
 });
 
-test("Submarine got hit, decrease length and increase hits", () => {
+test("Submarine object got hit and increase hits", () => {
   const subMarine = battleShipModel.Ship(3, 0, false);
   subMarine.hit();
-  expect(subMarine.getShipLength()).toBe(2);
   expect(subMarine.getShipHits()).toBe(1);
   expect(subMarine.getShipSunk()).toBe(false);
 });
 
-test("Patrolboat got hit, decrease length and increase hits", () => {
+test("Patrolboat object got hit, increase hits", () => {
   const patrolBoat = battleShipModel.Ship(2, 0, false);
   patrolBoat.hit();
-  expect(patrolBoat.getShipLength()).toBe(1);
   expect(patrolBoat.getShipHits()).toBe(1);
   expect(patrolBoat.getShipSunk()).toBe(false);
 });
