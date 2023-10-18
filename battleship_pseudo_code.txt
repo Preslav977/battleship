@@ -1,0 +1,146 @@
+//Battle ship pseudo code without testing and mocking.
+
+//File structure Ship, gameBoard, Player, displayController modules
+
+/*
+1. Choose for Ship between classes or factory function
+1.1. The ship object need to have length, number of times
+they have been hit and whenever they have been sunk
+In short three properties for length (number), hits (0), sunk (false)
+1.2. REMEMBER that you only have to test the objects public interface.
+Only methods and properties that are used outside of the ship
+object need unit test.
+Hmm testing should be done for these objects outside of the class ?
+1.3. Ships should have hit function, that increases
+number of hits in your ship, get the ship hits then a,
+variable that is inside of the function that increments for each hit for ship. 
+1.4. isSunk function that calculates it based of their (ships object) length and the number of hits
+This function calculate the for each ship based on his length and number of hits
+to know if it's sunk or not, maybe truthy or falsy variables ?
+For example if carrier length is 5, and it has hits 5, it's sunk else it's not
+*/
+
+/*
+2. Game boards, class for two players - player and computer.
+The game boards can the created by two-dimensional arrays filling them with empty strings
+2.1. Game is still being in the console, so don't do DOM yet, the only way to
+know if the code is running correctly is if it passes a test, don't rely on console log
+2.2 Game boards should be able to place ships on specific coordinates by calling
+the ship factory function
+Hmm, so placing ships should be Ship class/factory function responsibility
+Coordinates for the board is x,y, there has to be some kind of way to prevent
+placing ships on the same spot and out of bound !!!
+Maybe the placing the coordinates can be done using X or O, to fill the empty strings
+this can be something similar to Tic Tac Toe placing marker
+2.3 Game boards, should have function receiveAttack that takes x, y coordinate
+determines whether or no attack hit a ship and then hit function to the correct ship
+or records the coordinates of the missed spot.
+Hmm either console log that the target has been missed and sent to hit function
+which ship has been hit and increase the number of hits for specific object
+Or store somewhere the coordinates for the missing shots
+2.4 Game boards should keep track of missing attacks so they can display them properly.
+Maybe store the missed attacks in array or object, it can be dot or something else
+in order to render them and display them later in the interface
+2.5 Game boards should be able to report whether or not all of their ships have been sunk
+Hmm maybe it display in the screen if all ships has been destroyed later
+for now maybe console log if they have been sunk or not
+Maybe create all the ships with status Not Sunk and change it so Sunk after the ship has been sunk
+to show the user which ships has been sunk
+*/
+
+/*
+3. Create player, factory function that takes name as input marker doesn't matter
+3.1 Players can take turns playing the game by attacking enemy game board.
+Create functionality so players can take turns similar to TTT, and call method
+to attack enemy game board.
+3.2 Make the computer capable of making random plays, the AI does not have to be smart
+but it should know if the move is legal, and it shouldn't hit the same spot twice.
+Here using Math.random for x,y coordinates to make computer capable of making random plays.
+Before shooting should check if move is in the board and if it has been hit already
+this would prevent from shooting the same spot twice, either looping or recursion ?
+*/
+
+/*
+4. Main game logic and module for DOM known as Interface.
+4.1 After the game is working in the console now is good time to make an interface.
+4.2 The game is played against a computer by setting up new game and creating players
+game boards. For now populate each game board with predetermined coordinates
+You can implement system for allowing players to place their ships later.
+Pop up dialog that waits for players to enter their name, then start button to start the game
+fill the game board for now with hardcoded coordinates i assume this is what they mean by predetermined coordinates
+4.3. HTML implementation is up to me for now, but you should display both player's boards
+and render them using information from the game board class/factory
+Hmm so is up to me to create some of functionality using HTML or dynamically using JavaScript!!!
+HTML custom attribute pattern could be useful here as well !!!
+4.3.1 Create methods to render the game board and to take user click to attack.
+For attack the user should click on the coordinate in the enemy game board
+4.4. The game loop should step though the game turn by using only methods from the other objects.
+If at any point you are tempted to write new function inside the game loop step back and figure
+out which class or module that function should belong to
+The game loop is the following after all ships has been placed, first player attacks it registers on the board
+whether the attack is a miss or a hit, then is the computer and it shows if ship has been hit, if ship has been
+sunk show it in the board if all ship has been sunk of players or computer declare the winner stop the game else keep playing
+4.5 Conditions so that game ends once player's ships have all been sunk.
+This function is appropriate for the game module.
+Should check if all ships on players or computers side has been destroyed if yes stop the game
+else keep going, hmm either return to stop the game completely or use pointer events
+*/
+
+/*
+5. Finish it up
+5.1 Decent idea to let the player type each coordinate, but this can be tedious.
+Good idea will be to place the ships by left click and right click to rotate by x or y axis
+it has to show on the board the ships by hovering by default x axis, then right click y axis
+and x axis if right click has been registered and so on.
+Drag and drop would be another good idea, but it will take some time to implement!!!
+5.2 You can polish the intelligence of the computer player by having it try adjacent shots
+after getting a hit, that would probably mean if the computer hit something continue to hit the next
+place that is closer to that spot and if it is a miss the next turn is for the player
+5.3 Optionally, create 2 player option that lets user take turns by passing the device back and forth
+If you are going to go this route make sure the game is playable on a mobile screen and implement
+a pass device screen so that players don't see each other boards
+*/
+
+//carrier (5, 0, false), battleShip (4, 0, false), destroyer (3, 0, false),
+//subMarine (3, 0, false), patrolBoat (2, 0, false)
+//First argument is length, second is number of hits, and third if it's sunk
+
+// Before starting the project, figure out what each test/mocking should test/expects from each function
+/*
+1. Ships
+1.1 Since ships will be objects, expecting carrier to be length of 5, battleShip 
+to be length of 4, destroyer length of 3, subMarine length of 3, and patrolBoat length of 2
+1.2 Expecting function hit to increment the numbers of hits on the ships 
+1.3. Expecting isSunk function that after calculation of the ships length and number of hits
+to return true or false
+*/
+
+/*
+2. gameBoard
+2.1 For gameBoard the only way to know if the code works is by passing the above tests
+2.2 Expecting x,y coordinate on gameBoard to place the ships, also it has to be test that checks
+if ships are within the boards bounds and the cell it's not taken 
+2.3. Expecting receiveAttack function for gameBoard if there is a miss say target not hit,
+else if it is sent it to the hit function to the correct ship
+2.4 Expecting for each missed attack gameBoard to store the missed shots, later to render them
+2.5 Expecting gameBoard to check if all ships has been sunk
+*/
+
+/*
+3. Player
+3.1 Expecting after an attack players to change turns
+3.2 Expecting computer to make random plays, it should check if move is legal shouldn't hit on the same spot twice
+*/
+
+/*
+4. Main Game Loop and Interface
+4.1 Expecting conditions to know if all ships has been sunk on the board to end the game
+*/
+
+/*
+5. Finish it up
+5.1 Expecting ships that should be placed only if it's in the board bounds and the cell shouldn't be 
+occupied
+5.2 Expecting after a hit the computer to get adjacent slot after getting a hit
+basically another hit if target is hit
+*/
