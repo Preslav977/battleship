@@ -10,7 +10,7 @@ const battleShipModel = (() => {
       const shipTakingHit = hits++;
       const shipDecreasingLength = length--;
 
-      if (shipTakingHit === 0 && shipDecreasingLength <= 5) {
+      if (shipDecreasingLength === 0 && shipTakingHit <= 5) {
         return "The ship, cannot be hit anymore!";
       }
 
