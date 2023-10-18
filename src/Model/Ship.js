@@ -7,16 +7,24 @@ const battleShipModel = (() => {
     const getShipSunk = () => sunk;
 
     const hit = () => {
+      const decreaseShipLength = length--;
       const shipTakingHit = hits++;
 
-      if (shipTakingHit <= 5) {
+      if (decreaseShipLength === 0 && shipTakingHit <= 5) {
         return "The ship, cannot be hit anymore!";
       }
 
-      return { hit, sunk };
+      return { length, hit, sunk };
     };
 
-    return { getShipLength, getShipHits, getShipSunk, hit };
+    const isSunk = () => {
+      if (length === 0 && hits <= 5) {
+        return true;
+      }
+      return false;
+    };
+
+    return { getShipLength, getShipHits, getShipSunk, hit, isSunk };
   };
 
   return {
