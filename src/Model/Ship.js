@@ -1,30 +1,47 @@
-const battleShipModel = (() => {
-  const Ship = (length, hits, sunk) => {
-    const getShipLength = () => length;
-
-    const getShipHits = () => hits;
-
-    const getShipSunk = () => sunk;
+const battleShipBoard = (() => {
+  const Ship = (length, numberOfHits, isShipSunk) => {
+    const getShipHits = () => numberOfHits;
 
     const hit = () => {
-      const decreaseShipLength = length--;
-      const shipTakingHit = hits++;
+      const shipTakingHit = numberOfHits++;
 
-      if (decreaseShipLength === 0 && shipTakingHit <= 5) {
+      if (shipTakingHit <= 5) {
         return "The ship, cannot be hit anymore!";
       }
 
-      return { length, hit, sunk };
+      return { length, numberOfHits, isShipSunk };
     };
 
     const isSunk = () => {
-      if (length === 0 && hits <= 5) {
+      if (length === 5 && numberOfHits === 5) {
+        console.log("Carrier got sunk");
         return true;
       }
+
+      if (length === 4 && numberOfHits === 4) {
+        console.log("Battleship got sunk");
+        return true;
+      }
+
+      if (length === 3 && numberOfHits === 3) {
+        console.log("Destroyer got sunk");
+        return true;
+      }
+
+      if (length === 3 && numberOfHits === 3) {
+        console.log("Submarine got sunk");
+        return true;
+      }
+
+      if (length === 2 && numberOfHits === 2) {
+        console.log("Patrol boat got sunk");
+        return true;
+      }
+
       return false;
     };
 
-    return { getShipLength, getShipHits, getShipSunk, hit, isSunk };
+    return { length, getShipHits, isShipSunk, hit, isSunk };
   };
 
   return {
@@ -32,4 +49,4 @@ const battleShipModel = (() => {
   };
 })();
 
-module.exports = battleShipModel;
+module.exports = battleShipBoard;
