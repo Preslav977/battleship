@@ -142,7 +142,7 @@ test("Expecting Battleship if thats been hit 4 times to be sunk", () => {
   expect(battleShip.isSunk()).toBe(true);
 });
 
-test("Expecting Battleship if has been hit once, to be sunk", () => {
+test("Expecting Battleship if has been hit once, to not be sunk", () => {
   const battleShip = battleShipBoard.Ship(4, 0, false);
   battleShip.hit();
   expect(battleShip.isSunk()).toBe(false);
@@ -156,7 +156,7 @@ test("Expecting Submarine if thats been hit 3 times to be sunk", () => {
   expect(subMarine.isSunk()).toBe(true);
 });
 
-test("Expecting Submarine if has been hit once, to be sunk", () => {
+test("Expecting Submarine if has been hit once, to not be sunk", () => {
   const subMarine = battleShipBoard.Ship(3, 0, false);
   subMarine.hit();
   expect(subMarine.isSunk()).toBe(false);
@@ -170,7 +170,7 @@ test("Expecting Destroyer if thats been hit 3 times to be sunk", () => {
   expect(destroyer.isSunk()).toBe(true);
 });
 
-test("Expecting Destroyer if has been hit once, to be sunk", () => {
+test("Expecting Destroyer if has been hit once, to not be sunk", () => {
   const destroyer = battleShipBoard.Ship(3, 0, false);
   destroyer.hit();
   expect(destroyer.isSunk()).toBe(false);
@@ -183,7 +183,7 @@ test("Expecting PatrolBoat if thats been hit 2 times to be sunk", () => {
   expect(patrolBoat.isSunk()).toBe(true);
 });
 
-test("Expecting PatrolBoat if has been hit once, to be sunk", () => {
+test("Expecting PatrolBoat if has been hit once, to not be sunk", () => {
   const patrolBoat = battleShipBoard.Ship(2, 0, false);
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(false);

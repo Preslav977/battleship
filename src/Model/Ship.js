@@ -1,5 +1,7 @@
+const crypto = require("crypto");
+
 const battleShipBoard = (() => {
-  const Ship = (length, numberOfHits, isShipSunk) => {
+  const Ship = (length, numberOfHits, isShipSunk, id = crypto.randomUUID()) => {
     const getShipHits = () => numberOfHits;
 
     const hit = () => {
@@ -9,7 +11,7 @@ const battleShipBoard = (() => {
         return "The ship, cannot be hit anymore!";
       }
 
-      return { length, numberOfHits, isShipSunk };
+      return { numberOfHits };
     };
 
     const isSunk = () => {
@@ -41,7 +43,7 @@ const battleShipBoard = (() => {
       return false;
     };
 
-    return { length, getShipHits, isShipSunk, hit, isSunk };
+    return { length, getShipHits, isShipSunk, id, hit, isSunk };
   };
 
   return {
