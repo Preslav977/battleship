@@ -1,6 +1,3 @@
-// const battleShipCreation = require("./Ship");
-
-import crypto from "crypto";
 import { battleShipCreation } from "./Ship";
 
 test("Carrier ship, should be 5 length, not hit once and no being sunk", () => {
@@ -190,10 +187,4 @@ test("Expecting PatrolBoat if has been hit once, to not be sunk", () => {
   const patrolBoat = battleShipCreation.Ship(2, 0, false);
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(false);
-});
-
-Object.defineProperty(global, "crypto", {
-  value: {
-    randomUUID: () => crypto.randomUUID(),
-  },
 });
