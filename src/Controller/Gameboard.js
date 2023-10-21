@@ -1,3 +1,5 @@
+import { battleShipCreation } from "../Model/Ship";
+
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 8;
@@ -11,9 +13,20 @@ const battleShipBoard = (() => {
       }
     }
 
-    const placeShip = (col, row, ship, direction) => {
+    const placeShip = (
+      col,
+      row,
+      length,
+      numberOfHits,
+      isShipSunk,
+      direction
+    ) => {
       if (board[col][row] === "") {
-        board[col][row] = ship;
+        board[col][row] = battleShipCreation.Ship(
+          length,
+          numberOfHits,
+          isShipSunk
+        );
         return true;
       }
       return false;
@@ -36,4 +49,6 @@ const battleShipBoard = (() => {
   };
 })();
 
-module.exports = battleShipBoard;
+// module.exports = battleShipBoard;
+
+export { battleShipBoard };

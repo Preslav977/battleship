@@ -1,4 +1,4 @@
-const crypto = require("crypto");
+import crypto from "crypto";
 
 const battleShipCreation = (() => {
   const Ship = (length, numberOfHits, isShipSunk, id = crypto.randomUUID()) => {
@@ -51,4 +51,6 @@ const battleShipCreation = (() => {
   };
 })();
 
-module.exports = battleShipCreation;
+// module.exports = battleShipCreation;
+
+export { battleShipCreation };

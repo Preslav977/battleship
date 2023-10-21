@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/Preslav977/template-repository#readme",
   "devDependencies": {
-    "@babel/core": "^7.22.8",
-    "@babel/preset-env": "^7.22.7",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.7.3",
     "eslint": "^8.41.0",
