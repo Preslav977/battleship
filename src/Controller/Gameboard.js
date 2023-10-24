@@ -13,42 +13,39 @@ const battleShipBoard = (() => {
       }
     }
 
-    const placeShip = (
-      col,
-      row,
-      length,
-      numberOfHits,
-      isShipSunk,
-      direction
-    ) => {
-      if (board[col][row] === "") {
-        board[col][row] = battleShipCreation.Ship(
-          length,
-          numberOfHits,
-          isShipSunk
-        );
-        return true;
+    const placeShip = (col, row, ship) => {
+      const shipLength = ship.length;
+      for (let i = 0; i < board.length; i++) {
+        if (
+          board[col + shipLength][row] >= 0 &&
+          board[col + shipLength][row] < 8
+        ) {
+          board[col + shipLength][row] = ship;
+          return true;
+        }
+        if (
+          board[col][row + shipLength] >= 0 &&
+          board[col][row + shipLength] < 8
+        ) {
+          board[col][row + shipLength] = ship;
+          return true;
+        }
       }
       return false;
-      // check if coordinates are empty
-      // call the method that creates new object from Ship
-      // pass the arguments for the ship either directly in function
-      // or in placeShip argument hmm
-      // prevent ships from overlapping
-      // figure out the direction on how to place the ships on X or Y axis
-      // figure out how to do this 5 times for each ship either using a loop
-      // or maybe using recursion for recursion base case could be if all 5 ships
-      // has been placed return else keep going but don't place on top of each other
     };
 
-    return { placeShip };
+    const printBoard = () => {
+      board.forEach((cell) => {
+        console.log(cell);
+      });
+    };
+
+    return { placeShip, printBoard };
   };
 
   return {
     gameBoard,
   };
 })();
-
-// module.exports = battleShipBoard;
 
 export { battleShipBoard };

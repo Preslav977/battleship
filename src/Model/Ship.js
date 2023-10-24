@@ -6,7 +6,7 @@ const randomUUID = function b(a) {
 };
 
 const battleShipCreation = (() => {
-  const Ship = (length, numberOfHits, isShipSunk, id = randomUUID()) => {
+  const Ship = (name, length, numberOfHits, isShipSunk, id = randomUUID()) => {
     const getShipHits = () => numberOfHits;
 
     const hit = () => {
@@ -20,27 +20,27 @@ const battleShipCreation = (() => {
     };
 
     const isSunk = () => {
-      if (length === 5 && numberOfHits === 5) {
+      if (name === "carrier" && length === 5 && numberOfHits === 5) {
         console.log("Carrier got sunk");
         return true;
       }
 
-      if (length === 4 && numberOfHits === 4) {
+      if (name === "battleShip" && length === 4 && numberOfHits === 4) {
         console.log("Battleship got sunk");
         return true;
       }
 
-      if (length === 3 && numberOfHits === 3) {
+      if (name === "destroyer" && length === 3 && numberOfHits === 3) {
         console.log("Destroyer got sunk");
         return true;
       }
 
-      if (length === 3 && numberOfHits === 3) {
+      if (name === "subMarine" && length === 3 && numberOfHits === 3) {
         console.log("Submarine got sunk");
         return true;
       }
 
-      if (length === 2 && numberOfHits === 2) {
+      if (name === "patrolBoat" && length === 2 && numberOfHits === 2) {
         console.log("Patrol boat got sunk");
         return true;
       }
@@ -48,7 +48,7 @@ const battleShipCreation = (() => {
       return false;
     };
 
-    return { length, getShipHits, isShipSunk, id, hit, isSunk };
+    return { name, length, getShipHits, isShipSunk, id, hit, isSunk };
   };
 
   return {
