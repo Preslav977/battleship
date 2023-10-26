@@ -1,5 +1,3 @@
-import { battleShipCreation } from "../Model/Ship";
-
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 8;
@@ -13,25 +11,25 @@ const battleShipBoard = (() => {
       }
     }
 
-    const placeShip = (col, row, ship) => {
-      const shipLength = ship.length;
-      for (let i = 0; i < board.length; i++) {
+    const placeShip = (col, row, ship, direction) => {
+      for (let i = 0; i < ship.length; i++) {
         if (
-          board[col + shipLength][row] >= 0 &&
-          board[col + shipLength][row] < 8
+          board[col + i][row] === "" &&
+          board[col + i][row] < ship.length &&
+          direction === "vertical"
         ) {
-          board[col + shipLength][row] = ship;
-          return true;
-        }
-        if (
-          board[col][row + shipLength] >= 0 &&
-          board[col][row + shipLength] < 8
+          board[col + i][row] = ship;
+        } else if (
+          board[col][row + i] === "" &&
+          board[col][row + i] < ship.length &&
+          direction === "horizontal"
         ) {
-          board[col][row + shipLength] = ship;
-          return true;
+          board[col][row + i] = ship;
+        } else {
+          return "Invalid ship placement";
         }
       }
-      return false;
+      return board[col][row];
     };
 
     const printBoard = () => {
