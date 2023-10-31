@@ -2,6 +2,14 @@ import { battleShipLogic } from "../Model/Ship";
 
 const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
 
+const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+
+const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
+
+const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
+
+const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
+
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 8;
@@ -51,6 +59,32 @@ const battleShipBoard = (() => {
         board[col][row] = "M";
         return "Miss";
       }
+      if (board[col][row] === carrier && board[col][row] !== "H") {
+        board[col][row] = "H";
+        console.log("Carrier got hit");
+        return carrier.hit();
+      }
+      if (board[col][row] === carrier && board[col][row] !== "H") {
+        board[col][row] = "H";
+        console.log("Battleship got hit");
+        return battleShip.hit();
+      }
+      if (board[col][row] === carrier && board[col][row] !== "H") {
+        board[col][row] = "H";
+        console.log("Destroyer got hit");
+        return destroyer.hit();
+      }
+      if (board[col][row] === carrier && board[col][row] !== "H") {
+        board[col][row] = "H";
+        console.log("Submarine got hit");
+        return subMarine.hit();
+      }
+      if (board[col][row] === carrier && board[col][row] !== "H") {
+        board[col][row] = "H";
+        console.log("PatrolBoat got hit");
+        return patrolBoat.hit();
+      }
+      return "You cant attack the same spot";
     };
 
     return { placeShip, receiveAttack, printBoard };

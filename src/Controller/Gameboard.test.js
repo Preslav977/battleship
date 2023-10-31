@@ -75,3 +75,25 @@ test("Check if there is a hit on enemy board", () => {
   expect(spy).toHaveBeenCalled();
   expect(attack).toHaveProperty("numberOfHits", 1);
 });
+
+test("Check if the same spot is not attacked", () => {
+  const computerBoard = battleShipBoard.gameBoard();
+  expect(computerBoard.receiveAttack(4, 1)).toBe("Miss");
+  expect(computerBoard.receiveAttack(4, 1)).toBe(
+    "You cant attack the same spot"
+  );
+});
+
+test("Check if ship has not been hit twice", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const computerBoard = battleShipBoard.gameBoard();
+  computerBoard.placeShip(1, 0, carrier, "vertical");
+  computerBoard.receiveAttack(1, 0);
+  const spy = jest.spyOn(carrier, "hit");
+  const attack = carrier.hit();
+  expect(spy).toHaveBeenCalled();
+  expect(attack).toHaveProperty("numberOfHits", 1);
+  expect(computerBoard.receiveAttack(1, 0)).toBe(
+    "You cant attack the same spot"
+  );
+});
