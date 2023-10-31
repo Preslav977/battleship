@@ -87,7 +87,21 @@ const battleShipBoard = (() => {
       return "You cant attack the same spot";
     };
 
-    return { placeShip, receiveAttack, printBoard };
+    const missedShipAttacks = () => {
+      const getBoardCopy = [...board];
+
+      const filteredMissedAttacks = [];
+
+      for (let i = 0; i < getBoardCopy.length; i++) {
+        const retrieveMissedAttacks = getBoardCopy.filter(
+          (attack) => attack === "M"
+        );
+        filteredMissedAttacks.push(retrieveMissedAttacks);
+      }
+      return filteredMissedAttacks;
+    };
+
+    return { printBoard, placeShip, receiveAttack, missedShipAttacks };
   };
 
   return {
