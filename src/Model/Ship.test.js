@@ -1,7 +1,8 @@
-import { battleShipCreation } from "./Ship";
+/* eslint-disable no-undef */
+import { battleShipLogic } from "./Ship";
 
 test("Carrier ship, should be 5 length, not hit once and no being sunk", () => {
-  const carrier = battleShipCreation.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   expect(carrier).toHaveProperty("name", "carrier");
   expect(carrier).toHaveProperty("length", 5);
   expect(carrier.getShipHits()).toBe(0);
@@ -9,7 +10,7 @@ test("Carrier ship, should be 5 length, not hit once and no being sunk", () => {
 });
 
 test("Battleship ship, should be 4 length, not hit once and not being sunk", () => {
-  const battleShip = battleShipCreation.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
   expect(battleShip).toHaveProperty("name", "battleShip");
   expect(battleShip).toHaveProperty("length", 4);
   expect(battleShip.getShipHits()).toBe(0);
@@ -17,7 +18,7 @@ test("Battleship ship, should be 4 length, not hit once and not being sunk", () 
 });
 
 test("Destroyer ship, should be 3 length, not hit once and not being sunk", () => {
-  const destroyer = battleShipCreation.Ship("destroyer", 3, 0, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
   expect(destroyer).toHaveProperty("name", "destroyer");
   expect(destroyer).toHaveProperty("length", 3);
   expect(destroyer.getShipHits()).toBe(0);
@@ -25,7 +26,7 @@ test("Destroyer ship, should be 3 length, not hit once and not being sunk", () =
 });
 
 test("Submarine ship, should be 3 length, not hit once and not being sunk", () => {
-  const subMarine = battleShipCreation.Ship("subMarine", 3, 0, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
   expect(subMarine).toHaveProperty("name", "subMarine");
   expect(subMarine).toHaveProperty("length", 3);
   expect(subMarine.getShipHits()).toBe(0);
@@ -33,7 +34,7 @@ test("Submarine ship, should be 3 length, not hit once and not being sunk", () =
 });
 
 test("Patrol boat, ship should be 2 length, not hit once and not being sunk", () => {
-  const patrolBoat = battleShipCreation.Ship("patrolBoat", 2, 0, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
   expect(patrolBoat).toHaveProperty("name", "patrolBoat");
   expect(patrolBoat).toHaveProperty("length", 2);
   expect(patrolBoat.getShipHits()).toBe(0);
@@ -41,7 +42,7 @@ test("Patrol boat, ship should be 2 length, not hit once and not being sunk", ()
 });
 
 test("Carrier ship got hit, increase numberOfHits", () => {
-  const carrier = battleShipCreation.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   carrier.hit();
   expect(carrier).toHaveProperty("name", "carrier");
   expect(carrier).toHaveProperty("length", 5);
@@ -50,7 +51,7 @@ test("Carrier ship got hit, increase numberOfHits", () => {
 });
 
 test("Battleship ship got hit, increase numberOfHits", () => {
-  const battleShip = battleShipCreation.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
   battleShip.hit();
   expect(battleShip).toHaveProperty("name", "battleShip");
   expect(battleShip).toHaveProperty("length", 4);
@@ -59,7 +60,7 @@ test("Battleship ship got hit, increase numberOfHits", () => {
 });
 
 test("Destroyer ship got hit, increase numberOfHits", () => {
-  const destroyer = battleShipCreation.Ship("destroyer", 3, 0, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
   destroyer.hit();
   expect(destroyer).toHaveProperty("name", "destroyer");
   expect(destroyer).toHaveProperty("length", 3);
@@ -68,7 +69,7 @@ test("Destroyer ship got hit, increase numberOfHits", () => {
 });
 
 test("Submarine ship got hit, increase numberOfHits", () => {
-  const subMarine = battleShipCreation.Ship("subMarine", 3, 0, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
   subMarine.hit();
   expect(subMarine).toHaveProperty("name", "subMarine");
   expect(subMarine).toHaveProperty("length", 3);
@@ -77,7 +78,7 @@ test("Submarine ship got hit, increase numberOfHits", () => {
 });
 
 test("Patrol boat ship got hit, increase numberOfHits", () => {
-  const patrolBoat = battleShipCreation.Ship("patrolBoat", 2, 0, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
   patrolBoat.hit();
   expect(patrolBoat).toHaveProperty("name", "patrolBoat");
   expect(patrolBoat).toHaveProperty("length", 2);
@@ -86,7 +87,7 @@ test("Patrol boat ship got hit, increase numberOfHits", () => {
 });
 
 test("Carrier shouldn't be hit more than 5 times", () => {
-  const carrier = battleShipCreation.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   carrier.hit();
   carrier.hit();
   carrier.hit();
@@ -96,7 +97,7 @@ test("Carrier shouldn't be hit more than 5 times", () => {
 });
 
 test("Battleship should't be hit more than 4 times", () => {
-  const battleShip = battleShipCreation.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
   battleShip.hit();
   battleShip.hit();
   battleShip.hit();
@@ -105,7 +106,7 @@ test("Battleship should't be hit more than 4 times", () => {
 });
 
 test("Destroyer shouldn't be hit more than 3 times", () => {
-  const destroyer = battleShipCreation.Ship("destroyer", 3, 0, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
   destroyer.hit();
   destroyer.hit();
   destroyer.hit();
@@ -113,7 +114,7 @@ test("Destroyer shouldn't be hit more than 3 times", () => {
 });
 
 test("Submarine shouldn't be hit more than 3 times", () => {
-  const subMarine = battleShipCreation.Ship("subMarine", 3, 0, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
   subMarine.hit();
   subMarine.hit();
   subMarine.hit();
@@ -121,14 +122,14 @@ test("Submarine shouldn't be hit more than 3 times", () => {
 });
 
 test("Patrol boat shouldn't be hit more than 2 times", () => {
-  const patrolBoat = battleShipCreation.Ship("patrolBoat", 2, 0, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
   patrolBoat.hit();
   patrolBoat.hit();
   expect(patrolBoat.hit()).toBe("The ship, cannot be hit anymore!");
 });
 
 test("Expecting Carrier if thats been hit 5 times to be sunk", () => {
-  const carrier = battleShipCreation.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   carrier.hit();
   carrier.hit();
   carrier.hit();
@@ -138,13 +139,13 @@ test("Expecting Carrier if thats been hit 5 times to be sunk", () => {
 });
 
 test("Expecting Carrier if has been hit once, not to be sunk", () => {
-  const carrier = battleShipCreation.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   carrier.hit();
   expect(carrier.isSunk()).toBe(false);
 });
 
 test("Expecting Battleship if thats been hit 4 times to be sunk", () => {
-  const battleShip = battleShipCreation.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
   battleShip.hit();
   battleShip.hit();
   battleShip.hit();
@@ -153,13 +154,13 @@ test("Expecting Battleship if thats been hit 4 times to be sunk", () => {
 });
 
 test("Expecting Battleship if has been hit once, to not be sunk", () => {
-  const battleShip = battleShipCreation.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
   battleShip.hit();
   expect(battleShip.isSunk()).toBe(false);
 });
 
 test("Expecting Submarine if thats been hit 3 times to be sunk", () => {
-  const subMarine = battleShipCreation.Ship("subMarine", 3, 0, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
   subMarine.hit();
   subMarine.hit();
   subMarine.hit();
@@ -167,13 +168,13 @@ test("Expecting Submarine if thats been hit 3 times to be sunk", () => {
 });
 
 test("Expecting Submarine if has been hit once, to not be sunk", () => {
-  const subMarine = battleShipCreation.Ship("subMarine", 3, 0, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
   subMarine.hit();
   expect(subMarine.isSunk()).toBe(false);
 });
 
 test("Expecting Destroyer if thats been hit 3 times to be sunk", () => {
-  const destroyer = battleShipCreation.Ship("destroyer", 3, 0, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
   destroyer.hit();
   destroyer.hit();
   destroyer.hit();
@@ -181,20 +182,20 @@ test("Expecting Destroyer if thats been hit 3 times to be sunk", () => {
 });
 
 test("Expecting Destroyer if has been hit once, to not be sunk", () => {
-  const destroyer = battleShipCreation.Ship("destroyer", 3, 0, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
   destroyer.hit();
   expect(destroyer.isSunk()).toBe(false);
 });
 
 test("Expecting PatrolBoat if thats been hit 2 times to be sunk", () => {
-  const patrolBoat = battleShipCreation.Ship("patrolBoat", 2, 0, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
   patrolBoat.hit();
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(true);
 });
 
 test("Expecting PatrolBoat if has been hit once, to not be sunk", () => {
-  const patrolBoat = battleShipCreation.Ship("patrolBoat", 2, 0, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(false);
 });

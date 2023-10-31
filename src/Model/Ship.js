@@ -5,14 +5,14 @@ const randomUUID = function b(a) {
     : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
 };
 
-const battleShipCreation = (() => {
+const battleShipLogic = (() => {
   const Ship = (name, length, numberOfHits, isShipSunk, id = randomUUID()) => {
     const getShipHits = () => numberOfHits;
 
     const hit = () => {
       const shipTakingHit = numberOfHits++;
 
-      if (shipTakingHit <= 5) {
+      if (shipTakingHit >= length) {
         return "The ship, cannot be hit anymore!";
       }
 
@@ -56,4 +56,4 @@ const battleShipCreation = (() => {
   };
 })();
 
-export { battleShipCreation };
+export { battleShipLogic };
