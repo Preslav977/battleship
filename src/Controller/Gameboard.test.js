@@ -97,3 +97,36 @@ test("Check if ship has not been hit twice", () => {
     "You cant attack the same spot"
   );
 });
+
+test("If one ship is sunk and not all of them return false", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const computerBoard = battleShipBoard.gameBoard();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  expect(carrier.isSunk()).toBe(true);
+  expect(computerBoard.areAllShipsSunk()).toBe(false);
+});
+
+test("If all ships has been sunk return true", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
+  const computerBoard = battleShipBoard.gameBoard();
+  computerBoard.areAllShipsSunk();
+  if (
+    carrier.isSunk() === true &&
+    battleShip.isSunk() === true &&
+    destroyer.isSunk() === true &&
+    subMarine.isSunk() === true &&
+    patrolBoat.isSunk() === true
+  ) {
+    expect(computerBoard.areAllShipsSunk()).toBe(true);
+  } else {
+    expect(computerBoard.areAllShipsSunk()).toBe(false);
+  }
+});

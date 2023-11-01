@@ -31,16 +31,12 @@ const battleShipBoard = (() => {
           direction === "vertical"
         ) {
           board[col + i][row] = ship;
-          board[col + i + 1][row + 1] = "X";
-          board[col + i - 1][row + 1] = "X";
         } else if (
           board[col][row + i] === "" &&
           board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
-          board[col - 1][row + i - 0] = "X";
-          board[col + 1][row + i - 0] = "X";
         } else {
           return "Invalid ship placement";
         }
@@ -55,33 +51,28 @@ const battleShipBoard = (() => {
     };
 
     const receiveAttack = (col, row) => {
-      if (board[col][row] === "" || board[col][row] === "X") {
+      if (board[col][row] === "") {
         board[col][row] = "M";
         return "Miss";
       }
       if (board[col][row] === carrier && board[col][row] !== "H") {
         board[col][row] = "H";
-        console.log("Carrier got hit");
         return carrier.hit();
       }
-      if (board[col][row] === carrier && board[col][row] !== "H") {
+      if (board[col][row] === battleShip && board[col][row] !== "H") {
         board[col][row] = "H";
-        console.log("Battleship got hit");
         return battleShip.hit();
       }
-      if (board[col][row] === carrier && board[col][row] !== "H") {
+      if (board[col][row] === destroyer && board[col][row] !== "H") {
         board[col][row] = "H";
-        console.log("Destroyer got hit");
         return destroyer.hit();
       }
-      if (board[col][row] === carrier && board[col][row] !== "H") {
+      if (board[col][row] === subMarine && board[col][row] !== "H") {
         board[col][row] = "H";
-        console.log("Submarine got hit");
         return subMarine.hit();
       }
-      if (board[col][row] === carrier && board[col][row] !== "H") {
+      if (board[col][row] === patrolBoat && board[col][row] !== "H") {
         board[col][row] = "H";
-        console.log("PatrolBoat got hit");
         return patrolBoat.hit();
       }
       return "You cant attack the same spot";
@@ -92,16 +83,37 @@ const battleShipBoard = (() => {
 
       const filteredMissedAttacks = [];
 
-      for (let i = 0; i < getBoardCopy.length; i++) {
-        const retrieveMissedAttacks = getBoardCopy.filter(
+      for (let i = 0; i < getBoardCopy.length; i += 1) {
+        const retrieveMissedAttacks = getBoardCopy[i].filter(
           (attack) => attack === "M"
         );
-        filteredMissedAttacks.push(retrieveMissedAttacks);
+        if (retrieveMissedAttacks.length !== 0) {
+          filteredMissedAttacks.push(retrieveMissedAttacks);
+        }
       }
       return filteredMissedAttacks;
     };
 
-    return { printBoard, placeShip, receiveAttack, missedShipAttacks };
+    const areAllShipsSunk = () => {
+      if (
+        carrier.isSunk() === true &&
+        battleShip.isSunk() === true &&
+        destroyer.isSunk() === true &&
+        subMarine.isSunk() === true &&
+        patrolBoat.isSunk() === true
+      ) {
+        return true;
+      }
+      return false;
+    };
+
+    return {
+      printBoard,
+      placeShip,
+      receiveAttack,
+      missedShipAttacks,
+      areAllShipsSunk,
+    };
   };
 
   return {
