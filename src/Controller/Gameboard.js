@@ -94,25 +94,25 @@ const battleShipBoard = (() => {
       return filteredMissedAttacks;
     };
 
-    const areAllShipsSunk = () => {
-      if (
-        carrier.isSunk() === true &&
-        battleShip.isSunk() === true &&
-        destroyer.isSunk() === true &&
-        subMarine.isSunk() === true &&
-        patrolBoat.isSunk() === true
-      ) {
-        return true;
-      }
-      return false;
-    };
+    // const areAllShipsSunk = () => {
+    //   if (
+    // carrier.isSunk() === true &&
+    // battleShip.isSunk() === true &&
+    // destroyer.isSunk() === true &&
+    // subMarine.isSunk() === true &&
+    // patrolBoat.isSunk() === true
+    //   ) {
+    //     return true;
+    //   }
+    //   return false;
+    // };
 
     return {
       printBoard,
       placeShip,
       receiveAttack,
       missedShipAttacks,
-      areAllShipsSunk,
+      // areAllShipsSunk,
     };
   };
 
