@@ -51,31 +51,19 @@ const battleShipBoard = (() => {
     };
 
     const receiveAttack = (col, row) => {
+      const ship = board[col][row];
+
       if (board[col][row] === "") {
         board[col][row] = "M";
         return "Miss";
       }
-      if (board[col][row] === carrier && board[col][row] !== "H") {
+
+      if (board[col][row] === ship && board[col][row] !== "H") {
         board[col][row] = "H";
-        return carrier.hit();
+        return ship.hit();
       }
-      if (board[col][row] === battleShip && board[col][row] !== "H") {
-        board[col][row] = "H";
-        return battleShip.hit();
-      }
-      if (board[col][row] === destroyer && board[col][row] !== "H") {
-        board[col][row] = "H";
-        return destroyer.hit();
-      }
-      if (board[col][row] === subMarine && board[col][row] !== "H") {
-        board[col][row] = "H";
-        return subMarine.hit();
-      }
-      if (board[col][row] === patrolBoat && board[col][row] !== "H") {
-        board[col][row] = "H";
-        return patrolBoat.hit();
-      }
-      return "You cant attack the same spot";
+
+      return "You cant hit the same spot";
     };
 
     const missedShipAttacks = () => {
@@ -94,25 +82,25 @@ const battleShipBoard = (() => {
       return filteredMissedAttacks;
     };
 
-    // const areAllShipsSunk = () => {
-    //   if (
-    // carrier.isSunk() === true &&
-    // battleShip.isSunk() === true &&
-    // destroyer.isSunk() === true &&
-    // subMarine.isSunk() === true &&
-    // patrolBoat.isSunk() === true
-    //   ) {
-    //     return true;
-    //   }
-    //   return false;
-    // };
+    const areAllShipsSunk = () => {
+      if (
+        carrier.isSunk() === true
+        // battleShip.isSunk() === true &&
+        // destroyer.isSunk() === true &&
+        // subMarine.isSunk() === true &&
+        // patrolBoat.isSunk() === true
+      ) {
+        return true;
+      }
+      return false;
+    };
 
     return {
       printBoard,
       placeShip,
       receiveAttack,
       missedShipAttacks,
-      // areAllShipsSunk,
+      areAllShipsSunk,
     };
   };
 

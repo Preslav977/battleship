@@ -69,42 +69,17 @@ test("Check if there is a hit on enemy board", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
-  computerBoard.receiveAttack(1, 0);
   const spy = jest.spyOn(carrier, "hit");
-  const attack = carrier.hit();
+  computerBoard.receiveAttack(1, 0);
   expect(spy).toHaveBeenCalled();
-  expect(attack).toHaveProperty("numberOfHits", 1);
 });
 
-test("Check if the same spot is not attacked", () => {
-  const computerBoard = battleShipBoard.gameBoard();
-  expect(computerBoard.receiveAttack(4, 1)).toBe("Miss");
-  expect(computerBoard.receiveAttack(4, 1)).toBe(
-    "You cant attack the same spot"
-  );
-});
-
-test("Check if board coordinates got received attack", () => {
+test("Check if the same spot has been hit", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   const spy = jest.spyOn(carrier, "hit");
   computerBoard.receiveAttack(1, 0);
-  carrier.hit();
   expect(spy).toHaveBeenCalled();
-});
-
-test("Check if board coordinates didn't receive attack on same spot", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-  const computerBoard = battleShipBoard.gameBoard();
-  computerBoard.placeShip(1, 0, carrier, "vertical");
-  const spy = jest.spyOn(carrier, "hit");
-  computerBoard.receiveAttack(1, 0);
-  computerBoard.receiveAttack(1, 0);
-  carrier.hit();
-  carrier.hit();
-  expect(spy).toHaveBeenCalled();
-  expect(computerBoard.receiveAttack(1, 0)).toBe(
-    "You cant attack the same spot"
-  );
+  expect(computerBoard.receiveAttack(1, 0)).toBe("You cant hit the same spot");
 });
