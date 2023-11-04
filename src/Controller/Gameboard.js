@@ -1,14 +1,14 @@
 import { battleShipLogic } from "../Model/Ship";
 
-const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+let carrier = battleShipLogic.Ship("carrier", 5, 0, false);
 
-const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+let battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
 
-const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
+let destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
 
-const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
+let subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
 
-const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
+let patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
 
 const battleShipBoard = (() => {
   const gameBoard = () => {
@@ -26,17 +26,85 @@ const battleShipBoard = (() => {
     const placeShip = (col, row, ship, direction) => {
       for (let i = 0; i < ship.length; i += 1) {
         if (
+          ship.name === "carrier" &&
           board[col + i][row] === "" &&
           board[col + i][row] < ship.length &&
           direction === "vertical"
         ) {
           board[col + i][row] = ship;
+          carrier = ship;
         } else if (
+          ship.name === "battleShip" &&
+          board[col + i][row] === "" &&
+          board[col + i][row] < ship.length &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          battleShip = ship;
+        } else if (
+          ship.name === "destroyer" &&
+          board[col + i][row] === "" &&
+          board[col + i][row] < ship.length &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          destroyer = ship;
+        } else if (
+          ship.name === "subMarine" &&
+          board[col + i][row] === "" &&
+          board[col + i][row] < ship.length &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          subMarine = ship;
+        } else if (
+          ship.name === "patrolBoat" &&
+          board[col + i][row] === "" &&
+          board[col + i][row] < ship.length &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          patrolBoat = ship;
+        } else if (
+          ship.name === "carrier" &&
           board[col][row + i] === "" &&
           board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
+          carrier = ship;
+        } else if (
+          ship.name === "battleShip" &&
+          board[col][row + i] === "" &&
+          board[col][row + i] < ship.length &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          battleShip = ship;
+        } else if (
+          ship.name === "destroyer" &&
+          board[col][row + i] === "" &&
+          board[col][row + i] < ship.length &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          destroyer = ship;
+        } else if (
+          ship.name === "subMarine" &&
+          board[col][row + i] === "" &&
+          board[col][row + i] < ship.length &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          subMarine = ship;
+        } else if (
+          ship.name === "patrolBoat" &&
+          board[col][row + i] === "" &&
+          board[col][row + i] < ship.length &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          patrolBoat = ship;
         } else {
           return "Invalid ship placement";
         }
@@ -83,11 +151,11 @@ const battleShipBoard = (() => {
 
     const areAllShipsSunk = () => {
       if (
-        carrier.getShipHits() === 5
-        // battleShip.isSunk() === true &&
-        // destroyer.isSunk() === true &&
-        // subMarine.isSunk() === true &&
-        // patrolBoat.isSunk() === true
+        carrier.isSunk() === true &&
+        battleShip.isSunk() === true &&
+        destroyer.isSunk() === true &&
+        subMarine.isSunk() === true &&
+        patrolBoat.isSunk() === true
       ) {
         return true;
       }
