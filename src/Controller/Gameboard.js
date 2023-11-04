@@ -51,18 +51,17 @@ const battleShipBoard = (() => {
     };
 
     const receiveAttack = (col, row) => {
-      const ship = board[col][row];
+      const getAllShips = board[col][row];
 
       if (board[col][row] === "") {
         board[col][row] = "M";
         return "Miss";
       }
 
-      if (board[col][row] === ship && board[col][row] !== "H") {
+      if (board[col][row] === getAllShips && board[col][row] !== "H") {
         board[col][row] = "H";
-        return ship.hit();
+        return getAllShips.hit();
       }
-
       return "You cant hit the same spot";
     };
 
@@ -84,7 +83,7 @@ const battleShipBoard = (() => {
 
     const areAllShipsSunk = () => {
       if (
-        carrier.isSunk() === true
+        carrier.getShipHits() === 5
         // battleShip.isSunk() === true &&
         // destroyer.isSunk() === true &&
         // subMarine.isSunk() === true &&
