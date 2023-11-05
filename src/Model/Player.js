@@ -1,3 +1,7 @@
+import { battleShipBoard } from "../Controller/Gameboard";
+
+// const computerBoard = battleShipBoard.gameBoard();
+
 const Player = (name) => {
   let player;
 
@@ -27,6 +31,10 @@ const Player = (name) => {
     console.log(`${getFirstPlayer().name} turn`);
   };
 
+  const attackComputerBoard = (col, row, computerBoard) => {
+    computerBoard.receiveAttack(col, row);
+  };
+
   return {
     name,
     setPlayer,
@@ -36,6 +44,7 @@ const Player = (name) => {
     switchPlayersTurns,
     getFirstPlayer,
     printTurn,
+    attackComputerBoard,
   };
 };
 
