@@ -126,7 +126,12 @@ const battleShipBoard = (() => {
         return "Miss";
       }
 
-      if (board[col][row] === getAllShips && board[col][row] !== "H") {
+      if (
+        board[col][row] === getAllShips &&
+        board[col][row] !== "H" &&
+        board[col][row] === getAllShips &&
+        board[col][row] !== "M"
+      ) {
         board[col][row] = "H";
         return getAllShips.hit();
       }

@@ -1,7 +1,3 @@
-import { battleShipBoard } from "../Controller/Gameboard";
-
-// const computerBoard = battleShipBoard.gameBoard();
-
 const Player = (name) => {
   let player;
 
@@ -35,6 +31,18 @@ const Player = (name) => {
     computerBoard.receiveAttack(col, row);
   };
 
+  const attackPlayerBoard = (playerBoard) => {
+    let col = Math.floor(Math.floor(Math.random() * 8));
+    let row = Math.floor(Math.floor(Math.random() * 8));
+
+    while (
+      playerBoard.receiveAttack(col, row) === "You cant attack the same spot"
+    ) {
+      col = Math.floor(Math.floor(Math.random() * 8));
+      row = Math.floor(Math.floor(Math.random() * 8));
+    }
+  };
+
   return {
     name,
     setPlayer,
@@ -45,6 +53,7 @@ const Player = (name) => {
     getFirstPlayer,
     printTurn,
     attackComputerBoard,
+    attackPlayerBoard,
   };
 };
 

@@ -15,6 +15,7 @@ const battleShipLogic = (() => {
       if (shipTakingHit >= length) {
         return "The ship, cannot be hit anymore!";
       }
+      console.log(`Ship ${name} got hit`);
 
       return { numberOfHits };
     };
