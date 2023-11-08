@@ -13,9 +13,9 @@ test("Check if ship has been placed on coordinates", () => {
 test("Check if ship is out of bound", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const playerBoard = battleShipBoard.gameBoard();
-  expect(playerBoard.placeShip(1, 8, carrier, "horizontal")).toBe(
-    "Invalid ship placement"
-  );
+  expect(() => {
+    playerBoard.placeShip(1, 8, carrier, "horizontal");
+  }).toThrow("Invalid ship placement");
 });
 
 test("Check if ship has already been placed at coordinate", () => {
@@ -25,9 +25,9 @@ test("Check if ship has already been placed at coordinate", () => {
   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
   );
-  expect(playerBoard.placeShip(1, 0, battleShip, "vertical")).toBe(
-    "Invalid ship placement"
-  );
+  expect(() => {
+    playerBoard.placeShip(1, 0, battleShip, "vertical");
+  }).toThrow("Invalid ship placement");
 });
 
 test("Check if ships are overlapping", () => {
@@ -37,9 +37,9 @@ test("Check if ships are overlapping", () => {
   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
   );
-  expect(playerBoard.placeShip(2, 0, battleShip, "horizontal")).toBe(
-    "Invalid ship placement"
-  );
+  expect(() => {
+    playerBoard.placeShip(2, 0, battleShip, "horizontal");
+  }).toThrow("Invalid ship placement");
 });
 
 test("Check if ships are not overlapping", () => {
@@ -49,9 +49,9 @@ test("Check if ships are not overlapping", () => {
   expect(playerBoard.placeShip(2, 1, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
   );
-  expect(playerBoard.placeShip(4, 3, battleShip, "horizontal")).not.toBe(
-    "Invalid ship placement"
-  );
+  expect(() => {
+    playerBoard.placeShip(4, 1, battleShip, "horizontal");
+  }).toThrow("Invalid ship placement");
 });
 
 test("Check if there is a miss on enemy board", () => {

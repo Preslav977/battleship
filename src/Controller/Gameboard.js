@@ -107,7 +107,7 @@ const battleShipBoard = (() => {
           ship.isPlaced = true;
           patrolBoat = ship;
         } else {
-          return "Invalid ship placement";
+          throw new Error("Invalid ship placement");
         }
       }
       return board[col][row];
@@ -204,7 +204,7 @@ const battleShipBoard = (() => {
           ship.isPlaced = true;
           patrolBoat = ship;
         } else {
-          return "Invalid ship placement";
+          throw new Error("Invalid ship placement");
         }
       }
       return board[col][row];
