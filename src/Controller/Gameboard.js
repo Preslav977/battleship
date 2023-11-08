@@ -1,14 +1,15 @@
+/* eslint-disable no-param-reassign */
 import { battleShipLogic } from "../Model/Ship";
 
-let carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+let carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
 
-let battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+let battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
 
-let destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
+let destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
 
-let subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
+let subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
 
-let patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
+let patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
 
 const battleShipBoard = (() => {
   const gameBoard = () => {
@@ -28,82 +29,179 @@ const battleShipBoard = (() => {
         if (
           ship.name === "carrier" &&
           board[col + i][row] === "" &&
-          board[col + i][row] < ship.length &&
           direction === "vertical"
         ) {
+          ship.isPlaced = true;
           board[col + i][row] = ship;
           carrier = ship;
         } else if (
           ship.name === "battleShip" &&
           board[col + i][row] === "" &&
-          board[col + i][row] < ship.length &&
           direction === "vertical"
         ) {
           board[col + i][row] = ship;
+          ship.isPlaced = true;
           battleShip = ship;
         } else if (
           ship.name === "destroyer" &&
           board[col + i][row] === "" &&
-          board[col + i][row] < ship.length &&
           direction === "vertical"
         ) {
           board[col + i][row] = ship;
+          ship.isPlaced = true;
           destroyer = ship;
         } else if (
           ship.name === "subMarine" &&
           board[col + i][row] === "" &&
-          board[col + i][row] < ship.length &&
           direction === "vertical"
         ) {
           board[col + i][row] = ship;
+          ship.isPlaced = true;
           subMarine = ship;
         } else if (
           ship.name === "patrolBoat" &&
           board[col + i][row] === "" &&
-          board[col + i][row] < ship.length &&
           direction === "vertical"
         ) {
           board[col + i][row] = ship;
+          ship.isPlaced = true;
           patrolBoat = ship;
         } else if (
           ship.name === "carrier" &&
           board[col][row + i] === "" &&
-          board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
+          ship.isPlaced = true;
           carrier = ship;
         } else if (
           ship.name === "battleShip" &&
           board[col][row + i] === "" &&
-          board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
+          ship.isPlaced = true;
           battleShip = ship;
         } else if (
           ship.name === "destroyer" &&
           board[col][row + i] === "" &&
-          board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
+          ship.isPlaced = true;
           destroyer = ship;
         } else if (
           ship.name === "subMarine" &&
           board[col][row + i] === "" &&
-          board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
+          ship.isPlaced = true;
           subMarine = ship;
         } else if (
           ship.name === "patrolBoat" &&
           board[col][row + i] === "" &&
-          board[col][row + i] < ship.length &&
           direction === "horizontal"
         ) {
           board[col][row + i] = ship;
+          ship.isPlaced = true;
+          patrolBoat = ship;
+        } else {
+          return "Invalid ship placement";
+        }
+      }
+      return board[col][row];
+    };
+
+    const placeShipComputer = (ship) => {
+      const col = Math.floor(Math.random() * 8);
+      const row = Math.floor(Math.random() * 8);
+      const shipDirections = ["vertical", "horizontal"];
+      const getRandomDirections = Math.floor(
+        Math.random() * shipDirections.length
+      );
+      const direction = shipDirections[getRandomDirections];
+
+      for (let i = 0; i < ship.length; i += 1) {
+        if (
+          ship.name === "carrier" &&
+          board[col + i][row] === "" &&
+          direction === "vertical"
+        ) {
+          ship.isPlaced = true;
+          board[col + i][row] = ship;
+          carrier = ship;
+        } else if (
+          ship.name === "battleShip" &&
+          board[col + i][row] === "" &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          ship.isPlaced = true;
+          battleShip = ship;
+        } else if (
+          ship.name === "destroyer" &&
+          board[col + i][row] === "" &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          ship.isPlaced = true;
+          destroyer = ship;
+        } else if (
+          ship.name === "subMarine" &&
+          board[col + i][row] === "" &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          ship.isPlaced = true;
+          subMarine = ship;
+        } else if (
+          ship.name === "patrolBoat" &&
+          board[col + i][row] === "" &&
+          direction === "vertical"
+        ) {
+          board[col + i][row] = ship;
+          ship.isPlaced = true;
+          patrolBoat = ship;
+        } else if (
+          ship.name === "carrier" &&
+          board[col][row + i] === "" &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          ship.isPlaced = true;
+          carrier = ship;
+        } else if (
+          ship.name === "battleShip" &&
+          board[col][row + i] === "" &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          ship.isPlaced = true;
+          battleShip = ship;
+        } else if (
+          ship.name === "destroyer" &&
+          board[col][row + i] === "" &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          ship.isPlaced = true;
+          destroyer = ship;
+        } else if (
+          ship.name === "subMarine" &&
+          board[col][row + i] === "" &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          ship.isPlaced = true;
+          subMarine = ship;
+        } else if (
+          ship.name === "patrolBoat" &&
+          board[col][row + i] === "" &&
+          direction === "horizontal"
+        ) {
+          board[col][row + i] = ship;
+          ship.isPlaced = true;
           patrolBoat = ship;
         } else {
           return "Invalid ship placement";
@@ -170,6 +268,7 @@ const battleShipBoard = (() => {
     return {
       printBoard,
       placeShip,
+      placeShipComputer,
       receiveAttack,
       missedShipAttacks,
       areAllShipsSunk,

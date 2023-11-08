@@ -6,8 +6,17 @@ const randomUUID = function b(a) {
 };
 
 const battleShipLogic = (() => {
-  const Ship = (name, length, numberOfHits, isShipSunk, id = randomUUID()) => {
+  const Ship = (
+    name,
+    length,
+    numberOfHits,
+    isShipSunk,
+    isPlaced,
+    id = randomUUID()
+  ) => {
     const getShipHits = () => numberOfHits;
+
+    const getIsPlaced = () => isPlaced;
 
     const hit = () => {
       const shipTakingHit = numberOfHits++;
@@ -49,7 +58,17 @@ const battleShipLogic = (() => {
       return false;
     };
 
-    return { name, length, getShipHits, isShipSunk, id, hit, isSunk };
+    return {
+      name,
+      length,
+      getShipHits,
+      isShipSunk,
+      getIsPlaced,
+      isPlaced,
+      id,
+      hit,
+      isSunk,
+    };
   };
 
   return {

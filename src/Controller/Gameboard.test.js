@@ -3,7 +3,7 @@ import { battleShipLogic } from "../Model/Ship";
 import { battleShipBoard } from "./Gameboard";
 
 test("Check if ship has been placed on coordinates", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const playerBoard = battleShipBoard.gameBoard();
   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
@@ -11,7 +11,7 @@ test("Check if ship has been placed on coordinates", () => {
 });
 
 test("Check if ship is out of bound", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const playerBoard = battleShipBoard.gameBoard();
   expect(playerBoard.placeShip(1, 8, carrier, "horizontal")).toBe(
     "Invalid ship placement"
@@ -20,7 +20,7 @@ test("Check if ship is out of bound", () => {
 
 test("Check if ship has already been placed at coordinate", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
   const playerBoard = battleShipBoard.gameBoard();
   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
@@ -32,7 +32,7 @@ test("Check if ship has already been placed at coordinate", () => {
 
 test("Check if ships are overlapping", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
   const playerBoard = battleShipBoard.gameBoard();
   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
@@ -44,7 +44,7 @@ test("Check if ships are overlapping", () => {
 
 test("Check if ships are not overlapping", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
   const playerBoard = battleShipBoard.gameBoard();
   expect(playerBoard.placeShip(2, 1, carrier, "vertical")).not.toBe(
     "Invalid ship placement"
@@ -55,7 +55,7 @@ test("Check if ships are not overlapping", () => {
 });
 
 test("Check if there is a miss on enemy board", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   expect(computerBoard.receiveAttack(2, 1)).toBe("Miss");
@@ -66,7 +66,7 @@ afterEach(() => {
 });
 
 test("Check if there is a hit on enemy board", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   const spy = jest.spyOn(carrier, "hit");
@@ -75,7 +75,7 @@ test("Check if there is a hit on enemy board", () => {
 });
 
 test("Check if the same spot has been hit", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   const spy = jest.spyOn(carrier, "hit");
@@ -85,11 +85,11 @@ test("Check if the same spot has been hit", () => {
 });
 
 test("Check if hit has been called to the correct ship", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
-  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
-  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
-  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   computerBoard.placeShip(3, 1, battleShip, "vertical");
@@ -122,7 +122,7 @@ afterEach(() => {
 });
 
 test("Check if one ship has been sunk, and not all of them", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   const spyOnCarrierHit = jest.spyOn(carrier, "hit");
@@ -139,11 +139,11 @@ test("Check if one ship has been sunk, and not all of them", () => {
 });
 
 test("Check if all ships has been sunk", () => {
-  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false);
-  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
-  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
-  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
   const computerBoard = battleShipBoard.gameBoard();
   computerBoard.placeShip(1, 0, carrier, "vertical");
   computerBoard.placeShip(3, 1, battleShip, "vertical");
