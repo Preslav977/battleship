@@ -1,58 +1,77 @@
-// /* eslint-disable no-undef */
-// import { battleShipLogic } from "../Model/Ship";
-// import { battleShipBoard } from "./Gameboard";
+/* eslint-disable no-undef */
 
-// test("Check if ship has been placed on coordinates", () => {
-//   const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
-//   const playerBoard = battleShipBoard.gameBoard();
-//   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
-//     "Invalid ship placement"
-//   );
-// });
+import { battleShipLogic } from "../Model/Ship";
+import { battleShipBoard } from "./Gameboard";
 
-// test("Check if ship is out of bound", () => {
-//   const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
-//   const playerBoard = battleShipBoard.gameBoard();
-//   expect(() => {
-//     playerBoard.placeShip(1, 8, carrier, "horizontal");
-//   }).toThrow("Invalid ship placement");
-// });
+test("Check if ship has been placed on coordinates", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  const playerBoard = battleShipBoard.gameBoard();
+  expect(playerBoard.isCellAvailable(1, 0, carrier, "vertical")).toBe(true);
+  expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
+    "Invalid ship placement"
+  );
+  expect(carrier.isPlaced).toBe(true);
+});
 
-// test("Check if ship has already been placed at coordinate", () => {
-//   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-//   const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
-//   const playerBoard = battleShipBoard.gameBoard();
-//   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
-//     "Invalid ship placement"
-//   );
-//   expect(() => {
-//     playerBoard.placeShip(1, 0, battleShip, "vertical");
-//   }).toThrow("Invalid ship placement");
-// });
+test("Check if ship is out of bound", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  const playerBoard = battleShipBoard.gameBoard();
+  expect(playerBoard.isCellAvailable(1, 8, carrier, "horizontal")).toBe(false);
+  expect(() => {
+    playerBoard.placeShip(1, 8, carrier, "horizontal");
+  }).toThrow("Invalid ship placement");
+  expect(carrier.isPlaced).toBe(false);
+});
 
-// test("Check if ships are overlapping", () => {
-//   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-//   const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
-//   const playerBoard = battleShipBoard.gameBoard();
-//   expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
-//     "Invalid ship placement"
-//   );
-//   expect(() => {
-//     playerBoard.placeShip(2, 0, battleShip, "horizontal");
-//   }).toThrow("Invalid ship placement");
-// });
+test("Check if ship has already been placed at coordinate", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  const playerBoard = battleShipBoard.gameBoard();
+  expect(playerBoard.isCellAvailable(1, 0, carrier, "vertical")).toBe(true);
+  expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
+    "Invalid ship placement"
+  );
+  expect(carrier.isPlaced).toBe(true);
+  expect(playerBoard.isCellAvailable(1, 0, battleShip, "vertical")).toBe(false);
+  expect(() => {
+    playerBoard.placeShip(1, 0, battleShip, "vertical");
+  }).toThrow("Invalid ship placement");
+  expect(battleShip.isPlaced).toBe(false);
+});
 
-// test("Check if ships are not overlapping", () => {
-//   const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
-//   const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
-//   const playerBoard = battleShipBoard.gameBoard();
-//   expect(playerBoard.placeShip(2, 1, carrier, "vertical")).not.toBe(
-//     "Invalid ship placement"
-//   );
-//   expect(() => {
-//     playerBoard.placeShip(4, 1, battleShip, "horizontal");
-//   }).toThrow("Invalid ship placement");
-// });
+test("Check if ships are overlapping", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  const playerBoard = battleShipBoard.gameBoard();
+  expect(playerBoard.isCellAvailable(1, 0, carrier, "vertical")).toBe(true);
+  expect(playerBoard.placeShip(1, 0, carrier, "vertical")).not.toBe(
+    "Invalid ship placement"
+  );
+  expect(carrier.isPlaced).toBe(true);
+  expect(playerBoard.isCellAvailable(2, 0, battleShip, "horizontal")).toBe(
+    false
+  );
+  expect(() => {
+    playerBoard.placeShip(2, 0, battleShip, "horizontal");
+  }).toThrow("Invalid ship placement");
+  expect(battleShip.isPlaced).toBe(false);
+});
+
+test("Check if ships are not overlapping", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  const playerBoard = battleShipBoard.gameBoard();
+  expect(playerBoard.isCellAvailable(2, 1, carrier, "vertical"));
+  expect(playerBoard.placeShip(2, 1, carrier, "vertical")).not.toBe(
+    "Invalid ship placement"
+  );
+  expect(carrier.isPlaced).toBe(true);
+  expect(playerBoard.areAllShipsSunk(4, 1, battleShip, "horizontal"));
+  expect(() => {
+    playerBoard.placeShip(4, 1, battleShip, "horizontal");
+  }).toThrow("Invalid ship placement");
+  expect(battleShip.isPlaced).toBe(false);
+});
 
 // test("Check if there is a miss on enemy board", () => {
 //   const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
