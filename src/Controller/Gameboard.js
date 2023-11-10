@@ -61,16 +61,6 @@ const battleShipBoard = (() => {
       return board[col][row];
     };
 
-    // const placeShipComputer = (ship) => {
-    //   const col = Math.floor(Math.random() * 8);
-    //   const row = Math.floor(Math.random() * 8);
-    //   const shipDirections = ["vertical", "horizontal"];
-    //   const getRandomDirections = Math.floor(
-    //     Math.random() * shipDirections.length
-    //   );
-    //   const direction = shipDirections[getRandomDirections];
-    // };
-
     const printBoard = () => {
       board.forEach((cell) => {
         console.log(cell);
@@ -130,7 +120,6 @@ const battleShipBoard = (() => {
       isCellAvailable,
       placeShip,
       printBoard,
-      // placeShipComputer,
       receiveAttack,
       missedShipAttacks,
       areAllShipsSunk,
