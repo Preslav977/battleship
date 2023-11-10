@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const randomUUID = function b(a) {
   return a
     ? // eslint-disable-next-line no-bitwise
@@ -14,10 +15,6 @@ const battleShipLogic = (() => {
     isPlaced,
     id = randomUUID()
   ) => {
-    const getShipHits = () => numberOfHits;
-
-    const getIsPlaced = () => isPlaced;
-
     const hit = () => {
       const shipTakingHit = numberOfHits++;
 
@@ -30,28 +27,9 @@ const battleShipLogic = (() => {
     };
 
     const isSunk = () => {
-      if (name === "carrier" && length === 5 && numberOfHits === 5) {
-        console.log("Carrier got sunk");
-        return true;
-      }
-
-      if (name === "battleShip" && length === 4 && numberOfHits === 4) {
-        console.log("Battleship got sunk");
-        return true;
-      }
-
-      if (name === "destroyer" && length === 3 && numberOfHits === 3) {
-        console.log("Destroyer got sunk");
-        return true;
-      }
-
-      if (name === "subMarine" && length === 3 && numberOfHits === 3) {
-        console.log("Submarine got sunk");
-        return true;
-      }
-
-      if (name === "patrolBoat" && length === 2 && numberOfHits === 2) {
-        console.log("Patrol boat got sunk");
+      if (numberOfHits === length && isShipSunk === false) {
+        console.log(`Ship ${name} got sunk`);
+        isShipSunk = true;
         return true;
       }
 
@@ -59,13 +37,33 @@ const battleShipLogic = (() => {
     };
 
     return {
-      name,
-      length,
-      getShipHits,
-      isShipSunk,
-      getIsPlaced,
-      isPlaced,
-      id,
+      get name() {
+        return name;
+      },
+      get length() {
+        return length;
+      },
+      get numberOfHits() {
+        return numberOfHits;
+      },
+      set numberOfHits(value) {
+        numberOfHits = value;
+      },
+      get isShipSunk() {
+        return isShipSunk;
+      },
+      set isShipSunk(value) {
+        isShipSunk = value;
+      },
+      get isPlaced() {
+        return isPlaced;
+      },
+      set isPlaced(value) {
+        isPlaced = value;
+      },
+      get id() {
+        return id;
+      },
       hit,
       isSunk,
     };
