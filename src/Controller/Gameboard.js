@@ -1,21 +1,15 @@
 /* eslint-disable no-param-reassign */
+
 import { battleShipLogic } from "../Model/Ship";
 
 const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
-
-const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
-
-const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
-
-const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
-
-const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
 
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 8;
     const rows = 8;
     const board = [];
+    const saveShips = [];
 
     for (let i = 0; i < cols; i += 1) {
       board[i] = [];
@@ -58,7 +52,8 @@ const battleShipBoard = (() => {
       } else if (!isCellAvailable(col, row, ship, direction) === true) {
         throw new Error("Invalid ship placement");
       }
-      return board[col][row];
+      saveShips.push(ship);
+      return ship;
     };
 
     const printBoard = () => {
@@ -104,13 +99,30 @@ const battleShipBoard = (() => {
     };
 
     const areAllShipsSunk = () => {
-      if (
-        carrier.isSunk() === true &&
-        battleShip.isSunk() === true &&
-        destroyer.isSunk() === true &&
-        subMarine.isSunk() === true &&
-        patrolBoat.isSunk() === true
-      ) {
+      let sunkShips = 0;
+
+      for (let i = 0; i < saveShips.length; i += 1) {
+        if (saveShips[i].name === "carrier" && saveShips[i].isSunk()) {
+          sunkShips += 1;
+        }
+        // else if (
+        //   saveShips[i].name === "battleShip" &&
+        //   saveShips[i].isSunk()
+        // ) {
+        //   sunkShips += 1;
+        // } else if (saveShips[i].name === "destroyer" && saveShips[i].isSunk()) {
+        //   sunkShips += 1;
+        // } else if (saveShips[i].name === "subMarine" && saveShips[i].isSunk()) {
+        //   sunkShips += 1;
+        // } else if (
+        //   saveShips[i].name === "patrolBoat" &&
+        //   saveShips[i].isSunk()
+        // ) {
+        //   sunkShips += 1;
+        // }
+      }
+
+      if (sunkShips === 1) {
         return true;
       }
       return false;

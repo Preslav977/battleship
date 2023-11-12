@@ -27,12 +27,56 @@ const battleShipLogic = (() => {
     };
 
     const isSunk = () => {
-      if (numberOfHits === length && isShipSunk === false) {
-        console.log(`Ship ${name} got sunk`);
+      if (
+        name === "carrier" &&
+        length === 5 &&
+        numberOfHits === 5 &&
+        isShipSunk === false
+      ) {
+        console.log("Carrier got sunk");
         isShipSunk = true;
         return true;
       }
-
+      if (
+        name === "battleShip" &&
+        length === 4 &&
+        numberOfHits === 4 &&
+        isShipSunk === false
+      ) {
+        console.log("Battleship got sunk");
+        isShipSunk = true;
+        return true;
+      }
+      if (
+        name === "destroyer" &&
+        length === 3 &&
+        numberOfHits === 3 &&
+        isShipSunk === false
+      ) {
+        console.log("Destroyer got sunk");
+        isShipSunk = true;
+        return true;
+      }
+      if (
+        name === "subMarine" &&
+        length === 3 &&
+        numberOfHits === 3 &&
+        isShipSunk === false
+      ) {
+        console.log("Submarine got sunk");
+        isShipSunk = true;
+        return true;
+      }
+      if (
+        name === "patrolBoat" &&
+        length === 2 &&
+        numberOfHits === 2 &&
+        isShipSunk === false
+      ) {
+        console.log("Patrol boat got sunk");
+        isShipSunk = true;
+        return true;
+      }
       return false;
     };
 
