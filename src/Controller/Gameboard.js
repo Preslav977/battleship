@@ -1,9 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-import { battleShipLogic } from "../Model/Ship";
-
-const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
-
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 8;
@@ -104,25 +100,23 @@ const battleShipBoard = (() => {
       for (let i = 0; i < saveShips.length; i += 1) {
         if (saveShips[i].name === "carrier" && saveShips[i].isSunk()) {
           sunkShips += 1;
+        } else if (
+          saveShips[i].name === "battleShip" &&
+          saveShips[i].isSunk()
+        ) {
+          sunkShips += 1;
+        } else if (saveShips[i].name === "destroyer" && saveShips[i].isSunk()) {
+          sunkShips += 1;
+        } else if (saveShips[i].name === "subMarine" && saveShips[i].isSunk()) {
+          sunkShips += 1;
+        } else if (
+          saveShips[i].name === "patrolBoat" &&
+          saveShips[i].isSunk()
+        ) {
+          sunkShips += 1;
         }
-        // else if (
-        //   saveShips[i].name === "battleShip" &&
-        //   saveShips[i].isSunk()
-        // ) {
-        //   sunkShips += 1;
-        // } else if (saveShips[i].name === "destroyer" && saveShips[i].isSunk()) {
-        //   sunkShips += 1;
-        // } else if (saveShips[i].name === "subMarine" && saveShips[i].isSunk()) {
-        //   sunkShips += 1;
-        // } else if (
-        //   saveShips[i].name === "patrolBoat" &&
-        //   saveShips[i].isSunk()
-        // ) {
-        //   sunkShips += 1;
-        // }
       }
-
-      if (sunkShips === 1) {
+      if (sunkShips === 5) {
         return true;
       }
       return false;

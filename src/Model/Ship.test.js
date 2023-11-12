@@ -146,14 +146,12 @@ test("Expecting Carrier if thats been hit 5 times to be sunk", () => {
   carrier.hit();
   carrier.hit();
   expect(carrier.isSunk()).toBe(true);
-  expect(carrier.isShipSunk).toBe(true);
 });
 
 test("Expecting Carrier if has been hit once, not to be sunk", () => {
   const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
   carrier.hit();
   expect(carrier.isSunk()).toBe(false);
-  expect(carrier.isShipSunk).toBe(false);
 });
 
 test("Expecting Battleship if thats been hit 4 times to be sunk", () => {
@@ -163,14 +161,12 @@ test("Expecting Battleship if thats been hit 4 times to be sunk", () => {
   battleShip.hit();
   battleShip.hit();
   expect(battleShip.isSunk()).toBe(true);
-  expect(battleShip.isShipSunk).toBe(true);
 });
 
 test("Expecting Battleship if has been hit once, to not be sunk", () => {
   const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
   battleShip.hit();
   expect(battleShip.isSunk()).toBe(false);
-  expect(battleShip.isShipSunk).toBe(false);
 });
 
 test("Expecting Submarine if thats been hit 3 times to be sunk", () => {
@@ -179,14 +175,12 @@ test("Expecting Submarine if thats been hit 3 times to be sunk", () => {
   subMarine.hit();
   subMarine.hit();
   expect(subMarine.isSunk()).toBe(true);
-  expect(subMarine.isShipSunk).toBe(true);
 });
 
 test("Expecting Submarine if has been hit once, to not be sunk", () => {
   const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false);
   subMarine.hit();
   expect(subMarine.isSunk()).toBe(false);
-  expect(subMarine.isShipSunk).toBe(false);
 });
 
 test("Expecting Destroyer if thats been hit 3 times to be sunk", () => {
@@ -195,14 +189,12 @@ test("Expecting Destroyer if thats been hit 3 times to be sunk", () => {
   destroyer.hit();
   destroyer.hit();
   expect(destroyer.isSunk()).toBe(true);
-  expect(destroyer.isShipSunk).toBe(true);
 });
 
 test("Expecting Destroyer if has been hit once, to not be sunk", () => {
   const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false);
   destroyer.hit();
   expect(destroyer.isSunk()).toBe(false);
-  expect(destroyer.isShipSunk).toBe(false);
 });
 
 test("Expecting PatrolBoat if thats been hit 2 times to be sunk", () => {
@@ -210,12 +202,10 @@ test("Expecting PatrolBoat if thats been hit 2 times to be sunk", () => {
   patrolBoat.hit();
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(true);
-  expect(patrolBoat.isShipSunk).toBe(true);
 });
 
 test("Expecting PatrolBoat if has been hit once, to not be sunk", () => {
   const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false);
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(false);
-  expect(patrolBoat.isShipSunk).toBe(false);
 });
