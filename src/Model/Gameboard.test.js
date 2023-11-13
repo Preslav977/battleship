@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { battleShipLogic } from "../Model/Ship";
+import { battleShipLogic } from "./Ship";
 import { battleShipBoard } from "./Gameboard";
 
 test("Check if ship has been placed on coordinates", () => {

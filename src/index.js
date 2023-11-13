@@ -1,11 +1,7 @@
-import { battleShipLogic } from "./Model/Ship";
+import { Player } from "./Controller/Player";
 
-import { battleShipBoard } from "./Controller/Gameboard";
+const player = Player("Player");
 
-const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+console.log(player.gameLoop(1, 0));
 
-const playersBoard = battleShipBoard.gameBoard();
-
-console.log(playersBoard.placeShip(0, 0, carrier, "vertical"));
-
-playersBoard.printBoard();
+console.log(player.gameLoop(5, 0));

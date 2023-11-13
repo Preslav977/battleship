@@ -2,8 +2,8 @@
 
 const battleShipBoard = (() => {
   const gameBoard = () => {
-    const cols = 8;
-    const rows = 8;
+    const cols = 10;
+    const rows = 10;
     const board = [];
     const saveShips = [];
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { Player } from "./Player";
 
-import { battleShipBoard } from "../Controller/Gameboard";
+import { battleShipBoard } from "../Model/Gameboard";
 
 const computerBoard = battleShipBoard.gameBoard();
 
