@@ -16,7 +16,12 @@ const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
 
 const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
 
-const Player = (name) => {
+const battleShipGame = (() => {
+  const Player = (name) => name;
+
+  // create two factory objects
+  // to test the game loop
+
   const player = { name: "Player" };
 
   const computer = { name: "Computer" };
@@ -42,7 +47,7 @@ const Player = (name) => {
   const getFirstPlayer = () => firstPlayer;
 
   const printTurn = () => {
-    console.log(`${getFirstPlayer()} turn`);
+    console.log(`${getFirstPlayer().name} turn`);
   };
 
   const attackComputerBoard = (col, row, computerBoard) => {
@@ -61,7 +66,7 @@ const Player = (name) => {
     }
   };
 
-  const gameLoop = (col, row) => {
+  const placeAllShipsOnPredeterminedCoordinates = () => {
     playerBoard.isCellAvailable(1, 0, carrier, "vertical");
 
     playerBoard.placeShip(1, 0, carrier, "vertical");
@@ -101,16 +106,27 @@ const Player = (name) => {
     computerBoard.isCellAvailable(6, 6, patrolBoat, "horizontal");
 
     computerBoard.placeShip(6, 6, patrolBoat, "horizontal");
+  };
 
-    console.log(attackComputerBoard(col, row, getFirstPlayer()));
+  const gameLoop = (col, row) => {
+    console.log(`${getFirstPlayer().name} attacks first`);
+    attackComputerBoard(col, row, computerBoard);
 
     computerBoard.printBoard();
+
+    console.log(playerBoard.missedShipAttacks());
+
+    console.log(computerBoard.areAllShipsSunk());
 
     switchPlayersTurns();
 
     printTurn();
 
-    console.log(attackPlayerBoard(playerBoard));
+    attackPlayerBoard(playerBoard);
+
+    console.log(computerBoard.missedShipAttacks());
+
+    console.log(playerBoard.areAllShipsSunk());
 
     playerBoard.printBoard();
   };
@@ -118,7 +134,7 @@ const Player = (name) => {
   printTurn();
 
   return {
-    name,
+    Player,
     // setPlayer,
     setFirstPlayer,
     getPlayer,
@@ -128,8 +144,9 @@ const Player = (name) => {
     printTurn,
     attackComputerBoard,
     attackPlayerBoard,
+    placeAllShipsOnPredeterminedCoordinates,
     gameLoop,
   };
-};
+})();
 
-export { Player };
+export { battleShipGame };

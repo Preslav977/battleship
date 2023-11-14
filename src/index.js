@@ -1,7 +1,7 @@
-import { Player } from "./Controller/Player";
+import { battleShipGame } from "./Controller/Player";
 
-const player = Player("Player");
+battleShipGame.placeAllShipsOnPredeterminedCoordinates();
 
-console.log(player.gameLoop(1, 0));
+battleShipGame.gameLoop(1, 0);
 
-console.log(player.gameLoop(5, 0));
+// console.log(player.gameLoop(5, 0));
