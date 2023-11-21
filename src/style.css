@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.header-name {
+  font-size: large;
+}
+
+.player-board {
+  display: inline-grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: 500px;
+  height: 500px;
+  outline: 2px solid black;
+  margin-right: 20px;
+}
+
+.cell {
+  outline: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell:hover {
+  cursor: pointer;
+}
+
+.computer-board {
+  display: inline-grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: 500px;
+  height: 500px;
+  outline: 2px solid black;
+}
+
+.dialog {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  left: 640px;
+  top: 250px;
+  outline: 1px solid black;
+}
+
+.dialog-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.player-name,
+.player-name-input {
+  margin-bottom: 10px;
+}
+
+.instructions-container {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+.player-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.render-ships {
+  background-color: blue;
+}
+
+.render-misses {
+  background-color: green;
+}
+
+.render-attacks {
+  background-color: red;
+}
