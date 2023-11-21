@@ -8,5 +8,30 @@
   <script src="main.js" type="module" defer></script>
 </head>
 <body>
+  <div class="main-container">
+    <div class="header-container">
+      <div class="header">
+        <p class="header-name">
+          Battleship
+        </p>
+      </div>
+    </div>
+    <div class="dialog-container">
+      <dialog class="dialog">
+        <div class="dialog-container-wrapper">
+          <form class="player-information" id="player-name" method="dialog" method="get">
+            <label for="player-name" class="player-name" id="player-name">Enter your name:</label>
+            <input class="player-name-input" type="text" name="player-name" id="player-name">
+            <button class="confirm-button">Confirm</button>
+            <div class="instructions-container">
+              <p class="instructions">Enter your name and place ships to start the game</p>
+            </div>
+          </form>
+        </div>
+      </dialog>
+    </div>
+    <div class="player-board"></div>
+    <div class="computer-board"></div>
+  </div>
 </body>
 </html>
