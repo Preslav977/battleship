@@ -19,8 +19,10 @@ const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
 const battleShipGame = (() => {
   const Player = (name) => name;
 
-  // create two factory objects
-  // to test the game loop
+  // after the the game is started
+  // upon creating the player
+  // create the player object
+  // and the board objects
 
   let player;
 
@@ -109,17 +111,24 @@ const battleShipGame = (() => {
 
     computerBoard.printBoard();
 
-    console.log(playerBoard.missedShipAttacks());
+    console.log("Player missed attacks", playerBoard.missedShipAttacksPlayer());
 
-    console.log(computerBoard.areAllShipsSunk());
+    if (computerBoard.areAllShipsSunk()) {
+      return true;
+    }
 
     switchPlayersTurns();
 
     attackPlayerBoard(playerBoard);
 
-    console.log(computerBoard.missedShipAttacks());
+    console.log(
+      "Computer missed attacks",
+      computerBoard.missedShipAttacksComputer()
+    );
 
-    console.log(playerBoard.areAllShipsSunk());
+    if (playerBoard.areAllShipsSunk()) {
+      return true;
+    }
 
     playerBoard.printBoard();
   };
