@@ -12,7 +12,7 @@ const battleShipInterface = (() => {
   };
 
   const createPlayerAndGameboards = () => {
-    const playerName = document.querySelector(".player-name-input");
+    const playerName = document.querySelector(".player-name-input").value;
     battleShipGame.setPlayer(playerName);
     battleShipGame.setFirstPlayer();
     // create gameboard objects
@@ -58,6 +58,16 @@ const battleShipInterface = (() => {
       }
     }
   };
+
+  const clickEventHandler = (e) => {
+    const clickedCell = e.target;
+    const col = clickedCell.getAttribute("data-col");
+    const row = clickedCell.getAttribute("data-row");
+    if (!col && !row) return;
+    battleShipGame.gameLoop(col, row);
+  };
+
+  computerBoard.addEventListener("click", clickEventHandler);
 
   return { createPlayerBoard, createComputerBoard };
 })();

@@ -138,6 +138,9 @@ const battleShipBoard = (() => {
     };
 
     return {
+      get board() {
+        return [...board];
+      },
       isCellAvailable,
       placeShip,
       printBoard,

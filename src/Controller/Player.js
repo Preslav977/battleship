@@ -48,7 +48,7 @@ const battleShipGame = (() => {
 
   const getFirstPlayer = () => firstPlayer;
 
-  const attackComputerBoard = (col, row, computerBoard) => {
+  const attackComputerBoard = (col, row) => {
     console.log(computerBoard.receiveAttack(col, row));
   };
 
@@ -79,7 +79,7 @@ const battleShipGame = (() => {
 
     playerBoard.isCellAvailable(2, 4, subMarine, "vertical");
 
-    playerBoard.placeShip(2, 2, subMarine, "vertical");
+    playerBoard.placeShip(2, 4, subMarine, "vertical");
 
     playerBoard.isCellAvailable(6, 6, patrolBoat, "horizontal");
 
@@ -99,15 +99,15 @@ const battleShipGame = (() => {
 
     computerBoard.isCellAvailable(2, 4, subMarine, "vertical");
 
-    computerBoard.placeShip(2, 2, subMarine, "vertical");
+    computerBoard.placeShip(2, 4, subMarine, "vertical");
 
-    computerBoard.isCellAvailable(6, 6, patrolBoat, "horizontal");
+    computerBoard.isCellAvailable(8, 2, patrolBoat, "horizontal");
 
-    computerBoard.placeShip(6, 6, patrolBoat, "horizontal");
+    computerBoard.placeShip(8, 2, patrolBoat, "horizontal");
   };
 
   const gameLoop = (col, row) => {
-    attackComputerBoard(col, row, getFirstPlayer());
+    attackComputerBoard(col, row, getFirstPlayer().name);
 
     computerBoard.printBoard();
 
@@ -141,8 +141,6 @@ const battleShipGame = (() => {
     getComputer,
     switchPlayersTurns,
     getFirstPlayer,
-    attackComputerBoard,
-    attackPlayerBoard,
     placeAllShipsOnPredeterminedCoordinates,
     gameLoop,
   };
