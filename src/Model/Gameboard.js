@@ -59,27 +59,42 @@ const battleShipBoard = (() => {
     };
 
     const receiveAttack = (col, row) => {
-      const getAllShips = board[col][row];
+      const boardSpot = board[col][row];
 
       if (board[col][row] === "") {
         board[col][row] = "M";
         return "Miss";
       }
 
-      if (
-        board[col][row] === getAllShips &&
-        board[col][row] !== "H" &&
-        board[col][row] === getAllShips &&
-        board[col][row] !== "M"
-      ) {
+      if (board[col][row] !== "H" && board[col][row] !== "M") {
         board[col][row] = "H";
-        return getAllShips.hit();
+        return boardSpot.hit();
       }
       return "You cant hit the same spot";
     };
 
-    const missedShipAttacks = () => {
-      const getBoardCopy = [...board];
+    const missedShipAttacksPlayer = () => {
+      const computerBoard = battleShipBoard.gameBoard();
+
+      const getBoardCopy = computerBoard.board;
+
+      const filteredMissedAttacks = [];
+
+      for (let i = 0; i < getBoardCopy.length; i += 1) {
+        const retrieveMissedAttacks = getBoardCopy[i].filter(
+          (attack) => attack === "M"
+        );
+        if (retrieveMissedAttacks.length !== 0) {
+          filteredMissedAttacks.push(retrieveMissedAttacks);
+        }
+      }
+      return filteredMissedAttacks;
+    };
+
+    const missedShipAttacksComputer = () => {
+      const playerBoard = battleShipBoard.gameBoard();
+
+      const getBoardCopy = playerBoard.board;
 
       const filteredMissedAttacks = [];
 
@@ -127,7 +142,8 @@ const battleShipBoard = (() => {
       placeShip,
       printBoard,
       receiveAttack,
-      missedShipAttacks,
+      missedShipAttacksPlayer,
+      missedShipAttacksComputer,
       areAllShipsSunk,
     };
   };

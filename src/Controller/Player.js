@@ -22,13 +22,13 @@ const battleShipGame = (() => {
   // create two factory objects
   // to test the game loop
 
-  const player = { name: "Player" };
+  let player;
 
   const computer = { name: "Computer" };
 
-  // const setPlayer = (name) => {
-  //   player = Player(name);
-  // };
+  const setPlayer = (name) => {
+    player = Player(name);
+  };
 
   let firstPlayer = player;
 
@@ -45,10 +45,6 @@ const battleShipGame = (() => {
   };
 
   const getFirstPlayer = () => firstPlayer;
-
-  const printTurn = () => {
-    console.log(`${getFirstPlayer().name} turn`);
-  };
 
   const attackComputerBoard = (col, row, computerBoard) => {
     console.log(computerBoard.receiveAttack(col, row));
@@ -109,8 +105,7 @@ const battleShipGame = (() => {
   };
 
   const gameLoop = (col, row) => {
-    console.log(`${getFirstPlayer().name} attacks first`);
-    attackComputerBoard(col, row, computerBoard);
+    attackComputerBoard(col, row, getFirstPlayer());
 
     computerBoard.printBoard();
 
@@ -119,8 +114,6 @@ const battleShipGame = (() => {
     console.log(computerBoard.areAllShipsSunk());
 
     switchPlayersTurns();
-
-    printTurn();
 
     attackPlayerBoard(playerBoard);
 
@@ -131,17 +124,14 @@ const battleShipGame = (() => {
     playerBoard.printBoard();
   };
 
-  printTurn();
-
   return {
     Player,
-    // setPlayer,
+    setPlayer,
     setFirstPlayer,
     getPlayer,
     getComputer,
     switchPlayersTurns,
     getFirstPlayer,
-    printTurn,
     attackComputerBoard,
     attackPlayerBoard,
     placeAllShipsOnPredeterminedCoordinates,
