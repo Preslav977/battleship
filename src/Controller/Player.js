@@ -14,47 +14,7 @@ const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
 
 const playerBoard = battleShipBoard.gameBoard();
 
-playerBoard.isCellAvailable(1, 0, carrier, "vertical");
-
-playerBoard.placeShip(1, 0, carrier, "vertical");
-
-playerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
-
-playerBoard.placeShip(1, 3, battleShip, "horizontal");
-
-playerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
-
-playerBoard.placeShip(3, 5, destroyer, "horizontal");
-
-playerBoard.isCellAvailable(2, 4, subMarine, "vertical");
-
-playerBoard.placeShip(2, 4, subMarine, "vertical");
-
-playerBoard.isCellAvailable(6, 6, patrolBoat, "horizontal");
-
-playerBoard.placeShip(6, 6, patrolBoat, "horizontal");
-
 const computerBoard = battleShipBoard.gameBoard();
-
-computerBoard.isCellAvailable(1, 0, carrier, "vertical");
-
-computerBoard.placeShip(1, 0, carrier, "vertical");
-
-computerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
-
-computerBoard.placeShip(1, 3, battleShip, "horizontal");
-
-computerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
-
-computerBoard.placeShip(3, 5, destroyer, "horizontal");
-
-computerBoard.isCellAvailable(2, 4, subMarine, "vertical");
-
-computerBoard.placeShip(2, 4, subMarine, "vertical");
-
-computerBoard.isCellAvailable(8, 2, patrolBoat, "horizontal");
-
-computerBoard.placeShip(8, 2, patrolBoat, "horizontal");
 
 const battleShipGame = (() => {
   const Player = (name) => name;
@@ -88,7 +48,7 @@ const battleShipGame = (() => {
 
   const getFirstPlayer = () => firstPlayer;
 
-  const attackComputerBoard = (col, row) => {
+  const attackComputerBoard = (col, row, computerBoard) => {
     console.log(computerBoard.receiveAttack(col, row));
   };
 
@@ -104,16 +64,56 @@ const battleShipGame = (() => {
     }
   };
 
+  const placeAllShipsWithHardcodedCoordinates = () => {
+    playerBoard.isCellAvailable(1, 0, carrier, "vertical");
+
+    playerBoard.placeShip(1, 0, carrier, "vertical");
+
+    playerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
+
+    playerBoard.placeShip(1, 3, battleShip, "horizontal");
+
+    playerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
+
+    playerBoard.placeShip(3, 5, destroyer, "horizontal");
+
+    playerBoard.isCellAvailable(2, 4, subMarine, "vertical");
+
+    playerBoard.placeShip(2, 4, subMarine, "vertical");
+
+    playerBoard.isCellAvailable(6, 6, patrolBoat, "horizontal");
+
+    playerBoard.placeShip(6, 6, patrolBoat, "horizontal");
+
+    computerBoard.isCellAvailable(1, 0, carrier, "vertical");
+
+    computerBoard.placeShip(1, 0, carrier, "vertical");
+
+    computerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
+
+    computerBoard.placeShip(1, 3, battleShip, "horizontal");
+
+    computerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
+
+    computerBoard.placeShip(3, 5, destroyer, "horizontal");
+
+    computerBoard.isCellAvailable(2, 4, subMarine, "vertical");
+
+    computerBoard.placeShip(2, 4, subMarine, "vertical");
+
+    computerBoard.isCellAvailable(8, 2, patrolBoat, "horizontal");
+
+    computerBoard.placeShip(8, 2, patrolBoat, "horizontal");
+  };
+
   const gameLoop = (col, row) => {
-    attackComputerBoard(col, row, getFirstPlayer());
+    attackComputerBoard(col, row, computerBoard, getFirstPlayer());
 
     computerBoard.printBoard();
 
     console.log("Player missed attacks", playerBoard.missedAttacksPlayer());
 
-    if (computerBoard.areAllShipsSunk()) {
-      return true;
-    }
+    console.log("Are computer ships sunk", computerBoard.areAllShipsSunk());
 
     switchPlayersTurns();
 
@@ -126,9 +126,7 @@ const battleShipGame = (() => {
       computerBoard.missedAttacksComputer()
     );
 
-    if (playerBoard.areAllShipsSunk()) {
-      return true;
-    }
+    console.log("Are player ships sunk", computerBoard.areAllShipsSunk());
   };
 
   return {
@@ -138,7 +136,10 @@ const battleShipGame = (() => {
     getPlayer,
     getComputer,
     switchPlayersTurns,
+    attackComputerBoard,
+    attackPlayerBoard,
     getFirstPlayer,
+    placeAllShipsWithHardcodedCoordinates,
     gameLoop,
   };
 })();
