@@ -2,10 +2,6 @@ import "./style.css";
 
 import { battleShipInterface } from "./Controller/Interface";
 
-import { battleShipGame } from "./Controller/Player";
+battleShipInterface.renderPlayerBoard();
 
-battleShipGame.placeAllShipsOnPredeterminedCoordinates();
-
-battleShipInterface.createPlayerBoard();
-
-battleShipInterface.createComputerBoard();
+battleShipInterface.renderComputerBoard();

@@ -1,10 +1,13 @@
 /* eslint-disable no-param-reassign */
 
+import { computerBoard, playerBoard } from "../Controller/Player";
+
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 10;
     const rows = 10;
     const board = [];
+
     const saveShips = [];
 
     for (let i = 0; i < cols; i += 1) {
@@ -49,7 +52,7 @@ const battleShipBoard = (() => {
         throw new Error("Invalid ship placement");
       }
       saveShips.push(ship);
-      return ship;
+      return board[col][row];
     };
 
     const printBoard = () => {
@@ -73,9 +76,7 @@ const battleShipBoard = (() => {
       return "You cant hit the same spot";
     };
 
-    const missedShipAttacksPlayer = () => {
-      const computerBoard = battleShipBoard.gameBoard();
-
+    const missedAttacksPlayer = () => {
       const getBoardCopy = computerBoard.board;
 
       const filteredMissedAttacks = [];
@@ -91,9 +92,7 @@ const battleShipBoard = (() => {
       return filteredMissedAttacks;
     };
 
-    const missedShipAttacksComputer = () => {
-      const playerBoard = battleShipBoard.gameBoard();
-
+    const missedAttacksComputer = () => {
       const getBoardCopy = playerBoard.board;
 
       const filteredMissedAttacks = [];
@@ -145,8 +144,8 @@ const battleShipBoard = (() => {
       placeShip,
       printBoard,
       receiveAttack,
-      missedShipAttacksPlayer,
-      missedShipAttacksComputer,
+      missedAttacksPlayer,
+      missedAttacksComputer,
       areAllShipsSunk,
     };
   };

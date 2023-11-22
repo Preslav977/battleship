@@ -90,10 +90,10 @@ body {
   background-color: blue;
 }
 
-.render-misses {
+.missed-attacks {
   background-color: green;
 }
 
-.render-attacks {
+.ship-attacks {
   background-color: red;
 }
