@@ -4,13 +4,23 @@ import { battleShipBoard } from "../Model/Gameboard";
 
 const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
 
+const carrierAI = battleShipLogic.Ship("carrier", 5, 0, false, false);
+
 const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+
+const battleShipAI = battleShipLogic.Ship("battleShip", 4, 0, false, false);
 
 const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
 
+const destroyerAI = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+
 const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
 
+const subMarineAI = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+
 const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
+
+const patrolBoatAI = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
 
 const playerBoard = battleShipBoard.gameBoard();
 
@@ -85,25 +95,25 @@ const battleShipGame = (() => {
 
     playerBoard.placeShip(6, 6, patrolBoat, "horizontal");
 
-    computerBoard.isCellAvailable(1, 0, carrier, "vertical");
+    computerBoard.isCellAvailable(1, 0, carrierAI, "vertical");
 
-    computerBoard.placeShip(1, 0, carrier, "vertical");
+    computerBoard.placeShip(1, 0, carrierAI, "vertical");
 
-    computerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
+    computerBoard.isCellAvailable(1, 3, battleShipAI, "horizontal");
 
-    computerBoard.placeShip(1, 3, battleShip, "horizontal");
+    computerBoard.placeShip(1, 3, battleShipAI, "horizontal");
 
-    computerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
+    computerBoard.isCellAvailable(3, 5, destroyerAI, "horizontal");
 
-    computerBoard.placeShip(3, 5, destroyer, "horizontal");
+    computerBoard.placeShip(3, 5, destroyerAI, "horizontal");
 
-    computerBoard.isCellAvailable(2, 4, subMarine, "vertical");
+    computerBoard.isCellAvailable(2, 4, subMarineAI, "vertical");
 
-    computerBoard.placeShip(2, 4, subMarine, "vertical");
+    computerBoard.placeShip(2, 4, subMarineAI, "vertical");
 
-    computerBoard.isCellAvailable(8, 2, patrolBoat, "horizontal");
+    computerBoard.isCellAvailable(8, 2, patrolBoatAI, "horizontal");
 
-    computerBoard.placeShip(8, 2, patrolBoat, "horizontal");
+    computerBoard.placeShip(8, 2, patrolBoatAI, "horizontal");
   };
 
   const gameLoop = (col, row) => {
@@ -126,7 +136,7 @@ const battleShipGame = (() => {
       computerBoard.missedAttacksComputer()
     );
 
-    console.log("Are player ships sunk", computerBoard.areAllShipsSunk());
+    console.log("Are player ships sunk", playerBoard.areAllShipsSunk());
   };
 
   return {

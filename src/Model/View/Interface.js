@@ -1,4 +1,8 @@
-import { battleShipGame, playerBoard, computerBoard } from "./Player";
+import {
+  battleShipGame,
+  playerBoard,
+  computerBoard,
+} from "../../Controller/Player";
 
 const battleShipInterface = (() => {
   const getPlayerBoard = document.querySelector(".player-board");

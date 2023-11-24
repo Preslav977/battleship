@@ -1,6 +1,6 @@
 import "./style.css";
 
-import { battleShipInterface } from "./Controller/Interface";
+import { battleShipInterface } from "./Model/View/Interface";
 
 import { battleShipGame } from "./Controller/Player";
 

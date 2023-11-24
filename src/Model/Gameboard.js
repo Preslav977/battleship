@@ -130,7 +130,7 @@ const battleShipBoard = (() => {
           sunkShips += 1;
         }
       }
-      if (sunkShips === 1) {
+      if (sunkShips === 5) {
         return true;
       }
       return false;
