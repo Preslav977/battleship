@@ -2,7 +2,7 @@ import {
   battleShipGame,
   playerBoard,
   computerBoard,
-} from "../../Controller/Player";
+} from "../Controller/Player";
 
 const battleShipInterface = (() => {
   const getPlayerBoard = document.querySelector(".player-board");

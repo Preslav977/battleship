@@ -224,3 +224,72 @@ test("Check if all ships has been sunk", () => {
   expect(spyOnSunkPatrolBoat).toHaveBeenCalled();
   expect(computerBoard.areAllShipsSunk()).toBe(true);
 });
+
+test("Checking if computer ships are sunk, player wins", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
+  const computerBoard = battleShipBoard.gameBoard();
+  const playerBoard = battleShipBoard.gameBoard();
+  expect(computerBoard.isCellAvailable(1, 0, carrier, "vertical")).toBe(true);
+  computerBoard.placeShip(1, 0, carrier, "vertical");
+  expect(computerBoard.isCellAvailable(3, 1, battleShip, "vertical")).toBe(
+    true
+  );
+  computerBoard.placeShip(3, 1, battleShip, "vertical");
+  expect(computerBoard.isCellAvailable(4, 2, destroyer, "horizontal")).toBe(
+    true
+  );
+  computerBoard.placeShip(4, 2, destroyer, "horizontal");
+  expect(computerBoard.isCellAvailable(5, 4, subMarine, "horizontal")).toBe(
+    true
+  );
+  computerBoard.placeShip(5, 4, subMarine, "horizontal");
+  expect(computerBoard.isCellAvailable(6, 4, patrolBoat, "horizontal")).toBe(
+    true
+  );
+  computerBoard.placeShip(6, 4, patrolBoat, "horizontal");
+
+  const attackCarrier = jest.spyOn(carrier, "hit");
+  const attackBattleShip = jest.spyOn(battleShip, "hit");
+  const attackDestroyer = jest.spyOn(destroyer, "hit");
+  const attackSubMarine = jest.spyOn(subMarine, "hit");
+  const attackPatrolBoat = jest.spyOn(patrolBoat, "hit");
+  const spyOnSunkCarrier = jest.spyOn(carrier, "isSunk");
+  const spyOnSunkBattleship = jest.spyOn(battleShip, "isSunk");
+  const spyOnSunkDestroyer = jest.spyOn(destroyer, "isSunk");
+  const spyOnSunkSubmarine = jest.spyOn(subMarine, "isSunk");
+  const spyOnSunkPatrolBoat = jest.spyOn(patrolBoat, "isSunk");
+  computerBoard.receiveAttack(1, 0);
+  computerBoard.receiveAttack(2, 0);
+  computerBoard.receiveAttack(3, 0);
+  computerBoard.receiveAttack(4, 0);
+  computerBoard.receiveAttack(5, 0);
+  computerBoard.receiveAttack(3, 1);
+  computerBoard.receiveAttack(4, 1);
+  computerBoard.receiveAttack(5, 1);
+  computerBoard.receiveAttack(6, 1);
+  computerBoard.receiveAttack(4, 2);
+  computerBoard.receiveAttack(4, 3);
+  computerBoard.receiveAttack(4, 4);
+  computerBoard.receiveAttack(5, 4);
+  computerBoard.receiveAttack(5, 5);
+  computerBoard.receiveAttack(5, 6);
+  computerBoard.receiveAttack(6, 4);
+  computerBoard.receiveAttack(6, 5);
+  expect(attackCarrier).toHaveBeenCalledTimes(5);
+  expect(attackBattleShip).toHaveBeenCalledTimes(4);
+  expect(attackDestroyer).toHaveBeenCalledTimes(3);
+  expect(attackSubMarine).toHaveBeenCalledTimes(3);
+  expect(attackPatrolBoat).toHaveBeenCalledTimes(2);
+  computerBoard.areAllShipsSunk();
+  expect(spyOnSunkCarrier).toHaveBeenCalled();
+  expect(spyOnSunkBattleship).toHaveBeenCalled();
+  expect(spyOnSunkDestroyer).toHaveBeenCalled();
+  expect(spyOnSunkSubmarine).toHaveBeenCalled();
+  expect(spyOnSunkPatrolBoat).toHaveBeenCalled();
+  expect(computerBoard.areAllShipsSunk()).toBe(true);
+  expect(playerBoard.checkForWin(computerBoard)).toBe(true);
+});

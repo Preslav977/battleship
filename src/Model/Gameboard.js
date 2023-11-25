@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-import { computerBoard, playerBoard } from "../Controller/Player";
-
 const battleShipBoard = (() => {
   const gameBoard = () => {
     const cols = 10;
@@ -76,7 +74,7 @@ const battleShipBoard = (() => {
       return "You cant hit the same spot";
     };
 
-    const missedAttacksPlayer = () => {
+    const missedAttacksPlayer = (computerBoard) => {
       const getBoardCopy = computerBoard.board;
 
       const filteredMissedAttacks = [];
@@ -92,7 +90,7 @@ const battleShipBoard = (() => {
       return filteredMissedAttacks;
     };
 
-    const missedAttacksComputer = () => {
+    const missedAttacksComputer = (playerBoard) => {
       const getBoardCopy = playerBoard.board;
 
       const filteredMissedAttacks = [];
@@ -130,10 +128,16 @@ const battleShipBoard = (() => {
           sunkShips += 1;
         }
       }
-      if (sunkShips === 5) {
+      if (sunkShips === 1) {
         return true;
       }
       return false;
+    };
+
+    const checkForWin = (computerBoard) => {
+      if (computerBoard.areAllShipsSunk()) {
+        return true;
+      }
     };
 
     return {
@@ -147,6 +151,7 @@ const battleShipBoard = (() => {
       missedAttacksPlayer,
       missedAttacksComputer,
       areAllShipsSunk,
+      checkForWin,
     };
   };
 

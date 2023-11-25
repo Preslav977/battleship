@@ -42,7 +42,7 @@ const battleShipGame = (() => {
     player = Player(name);
   };
 
-  let firstPlayer = player;
+  let firstPlayer;
 
   const setFirstPlayer = () => {
     firstPlayer = player;
@@ -121,9 +121,17 @@ const battleShipGame = (() => {
 
     computerBoard.printBoard();
 
-    console.log("Player missed attacks", playerBoard.missedAttacksPlayer());
+    console.log(
+      "Player missed attacks",
+      playerBoard.missedAttacksPlayer(computerBoard)
+    );
 
-    console.log("Are computer ships sunk", computerBoard.areAllShipsSunk());
+    if (playerBoard.checkForWin(computerBoard)) {
+      console.log(getPlayer(), "won!");
+      return;
+    }
+
+    // console.log("Are computer ships sunk", computerBoard.areAllShipsSunk());
 
     switchPlayersTurns();
 
@@ -133,7 +141,7 @@ const battleShipGame = (() => {
 
     console.log(
       "Computer missed attacks",
-      computerBoard.missedAttacksComputer()
+      computerBoard.missedAttacksComputer(playerBoard)
     );
 
     console.log("Are player ships sunk", playerBoard.areAllShipsSunk());
