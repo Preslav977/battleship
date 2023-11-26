@@ -51,7 +51,8 @@ body {
   outline: 2px solid black;
 }
 
-.dialog {
+.dialog,
+.winner-dialog {
   position: absolute;
   width: 250px;
   height: 250px;
@@ -60,7 +61,8 @@ body {
   outline: 1px solid black;
 }
 
-.dialog-container-wrapper {
+.dialog-container-wrapper,
+.winner-dialog-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,4 +98,16 @@ body {
 
 .ship-attacks {
   background-color: red;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.play-again {
+  margin-top: 30px;
 }

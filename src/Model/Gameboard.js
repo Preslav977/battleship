@@ -128,7 +128,7 @@ const battleShipBoard = (() => {
           sunkShips += 1;
         }
       }
-      if (sunkShips === 1) {
+      if (sunkShips === 5) {
         return true;
       }
       return false;
@@ -136,6 +136,12 @@ const battleShipBoard = (() => {
 
     const checkForWin = (computerBoard) => {
       if (computerBoard.areAllShipsSunk()) {
+        return true;
+      }
+    };
+
+    const checkForWinAI = (playerBoard) => {
+      if (playerBoard.areAllShipsSunk()) {
         return true;
       }
     };
@@ -152,6 +158,7 @@ const battleShipBoard = (() => {
       missedAttacksComputer,
       areAllShipsSunk,
       checkForWin,
+      checkForWinAI,
     };
   };
 

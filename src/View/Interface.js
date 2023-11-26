@@ -11,6 +11,10 @@ const battleShipInterface = (() => {
 
   const playerNameInformation = document.querySelector(".player-information");
 
+  const displayWinner = document.querySelector(".display-winner");
+
+  const showWinnerDialog = document.querySelector(".winner-dialog");
+
   const resetForm = () => {
     playerNameInformation.reset();
   };

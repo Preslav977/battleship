@@ -144,7 +144,11 @@ const battleShipGame = (() => {
       computerBoard.missedAttacksComputer(playerBoard)
     );
 
-    console.log("Are player ships sunk", playerBoard.areAllShipsSunk());
+    // console.log("Are player ships sunk", playerBoard.areAllShipsSunk());
+
+    if (computerBoard.checkForWin(playerBoard)) {
+      console.log(getComputer().name, "won!");
+    }
   };
 
   return {
