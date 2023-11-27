@@ -55,8 +55,8 @@ const battleShipLogic = (() => {
 
     const resetNumberOfHits = () => {
       if (
-        (name === "carrier" && numberOfHits === 5) ||
-        (name === "carrier" && numberOfHits > 0)
+        (name === "carrier" && numberOfHits === 5 && length === 5) ||
+        (name === "carrier" && numberOfHits > 0 && length === 5)
       ) {
         numberOfHits = 0;
       }

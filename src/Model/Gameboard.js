@@ -6,7 +6,7 @@ const battleShipBoard = (() => {
     const rows = 10;
     const board = [];
 
-    const saveShips = [];
+    let saveShips = [];
 
     for (let i = 0; i < cols; i += 1) {
       board[i] = [];
@@ -157,6 +157,14 @@ const battleShipBoard = (() => {
       }
     };
 
+    const clearSaveShipsArray = () => {
+      for (let i = 0; i < saveShips.length; i += 1) {
+        if (saveShips[i].length !== 0) {
+          saveShips = [];
+        }
+      }
+    };
+
     return {
       get board() {
         return [...board];
@@ -171,6 +179,7 @@ const battleShipBoard = (() => {
       checkForWin,
       checkForWinAI,
       clearBoard,
+      clearSaveShipsArray,
     };
   };
 

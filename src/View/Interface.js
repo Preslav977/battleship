@@ -153,6 +153,10 @@ const battleShipInterface = (() => {
 
     computerBoard.clearBoard();
 
+    playerBoard.clearSaveShipsArray();
+
+    computerBoard.clearSaveShipsArray();
+
     carrier.resetNumberOfHits();
 
     carrierAI.resetNumberOfHits();
