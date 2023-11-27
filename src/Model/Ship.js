@@ -54,7 +54,38 @@ const battleShipLogic = (() => {
     };
 
     const resetNumberOfHits = () => {
-      if ((name === "carrier" && numberOfHits === 5) || numberOfHits > 0) {
+      if (
+        (name === "carrier" && numberOfHits === 5) ||
+        (name === "carrier" && numberOfHits > 0)
+      ) {
+        numberOfHits = 0;
+      }
+
+      if (
+        (name === "battleShip" && numberOfHits === 4) ||
+        (name === "battleShip" && numberOfHits > 0)
+      ) {
+        numberOfHits = 0;
+      }
+
+      if (
+        (name === "destroyer" && numberOfHits === 3) ||
+        (name === "destroyer" && numberOfHits > 0)
+      ) {
+        numberOfHits = 0;
+      }
+
+      if (
+        (name === "subMarine" && numberOfHits === 3) ||
+        (name === "subMarine" && numberOfHits > 0)
+      ) {
+        numberOfHits = 0;
+      }
+
+      if (
+        (name === "patrolBoat" && numberOfHits === 2) ||
+        (name === "patrolBoat" && numberOfHits > 0)
+      ) {
         numberOfHits = 0;
       }
     };

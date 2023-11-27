@@ -254,3 +254,100 @@ test("Expecting to after 5 hit to reset number of hits to the carrier to zero", 
   carrier.resetNumberOfHits();
   expect(carrier.numberOfHits).toBe(0);
 });
+
+test("Expecting to after 1 hit to reset number of hits to the battleship to zero", () => {
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  battleShip.hit();
+  battleShip.resetNumberOfHits();
+  expect(battleShip.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 2 hit to reset number of hits to the battleship to zero", () => {
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  battleShip.hit();
+  battleShip.hit();
+  battleShip.resetNumberOfHits();
+  expect(battleShip.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 3 hit to reset number of hits to the battleship to zero", () => {
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  battleShip.hit();
+  battleShip.hit();
+  battleShip.hit();
+  battleShip.resetNumberOfHits();
+  expect(battleShip.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 4 hit to reset number of hits to the battleship to zero", () => {
+  const battleShip = battleShipLogic.Ship("battleShip", 4, 0, false, false);
+  battleShip.hit();
+  battleShip.hit();
+  battleShip.hit();
+  battleShip.hit();
+  battleShip.resetNumberOfHits();
+  expect(battleShip.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 1 hit to reset number of hits to the destroyer to zero", () => {
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+  destroyer.hit();
+  destroyer.resetNumberOfHits();
+  expect(destroyer.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 2 hit to reset number of hits to the destroyer to zero", () => {
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+  destroyer.hit();
+  destroyer.hit();
+  destroyer.resetNumberOfHits();
+  expect(destroyer.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 3 hit to reset number of hits to the destroyer to zero", () => {
+  const destroyer = battleShipLogic.Ship("destroyer", 3, 0, false, false);
+  destroyer.hit();
+  destroyer.hit();
+  destroyer.hit();
+  destroyer.resetNumberOfHits();
+  expect(destroyer.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 1 hit to reset number of hits to the submarine to zero", () => {
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+  subMarine.hit();
+  subMarine.resetNumberOfHits();
+  expect(subMarine.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 2 hit to reset number of hits to the submarine to zero", () => {
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+  subMarine.hit();
+  subMarine.hit();
+  subMarine.resetNumberOfHits();
+  expect(subMarine.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 3 hit to reset number of hits to the submarine to zero", () => {
+  const subMarine = battleShipLogic.Ship("subMarine", 3, 0, false, false);
+  subMarine.hit();
+  subMarine.hit();
+  subMarine.hit();
+  subMarine.resetNumberOfHits();
+  expect(subMarine.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 1 hit to reset number of hits to the patrolBoat to zero", () => {
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
+  patrolBoat.hit();
+  patrolBoat.resetNumberOfHits();
+  expect(patrolBoat.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 1 hit to reset number of hits to the patrolBoat to zero", () => {
+  const patrolBoat = battleShipLogic.Ship("patrolBoat", 2, 0, false, false);
+  patrolBoat.hit();
+  patrolBoat.hit();
+  patrolBoat.resetNumberOfHits();
+  expect(patrolBoat.numberOfHits).toBe(0);
+});
