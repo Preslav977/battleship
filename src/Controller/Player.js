@@ -127,7 +127,7 @@ const battleShipGame = (() => {
     );
 
     if (playerBoard.checkForWin(computerBoard)) {
-      console.log(getPlayer(), "won!");
+      // console.log(getPlayer(), "won!");
       return;
     }
 
@@ -147,7 +147,7 @@ const battleShipGame = (() => {
     // console.log("Are player ships sunk", playerBoard.areAllShipsSunk());
 
     if (computerBoard.checkForWin(playerBoard)) {
-      console.log(getComputer().name, "won!");
+      // console.log(getComputer().name, "won!");
     }
   };
 

@@ -19,17 +19,16 @@ const battleShipInterface = (() => {
     playerNameInformation.reset();
   };
 
-  const createPlayerAndGameboards = () => {
+  const createPlayer = () => {
     const playerName = document.querySelector(".player-name-input").value;
     battleShipGame.setPlayer(playerName);
     battleShipGame.setFirstPlayer();
-    // create gameboard objects
   };
 
   playerNameInformation.addEventListener("submit", (e) => {
     // e.preventDefault();
-    createPlayerAndGameboards();
-    console.log(battleShipGame.getPlayer());
+    createPlayer();
+    battleShipGame.getPlayer();
     resetForm();
   });
 
@@ -65,6 +64,15 @@ const battleShipInterface = (() => {
     }
   };
 
+  const declarePlayerWinner = () => {
+    if (playerBoard.checkForWin(computerBoard)) {
+      displayWinner.textContent = `${battleShipGame.getPlayer()} won!`;
+      showWinnerDialog.setAttribute("open", true);
+      getPlayerBoard.style.pointerEvents = "none";
+      getComputerBoard.style.pointerEvents = "none";
+    }
+  };
+
   // TODO: Figure out a way to render the filtered missed attacks
   // that are saved in separate array, while the attacks are only
   // rendered from another array !
@@ -91,6 +99,15 @@ const battleShipInterface = (() => {
     }
   };
 
+  const declareComputerWinner = () => {
+    if (computerBoard.checkForWin(playerBoard)) {
+      displayWinner.textContent = `${battleShipGame.getComputer().name} won!`;
+      showWinnerDialog.setAttribute("open", true);
+      getPlayerBoard.style.pointerEvents = "none";
+      getComputerBoard.style.pointerEvents = "none";
+    }
+  };
+
   const clickEventHandler = (e) => {
     const clickedCell = e.target;
     const col = clickedCell.getAttribute("data-col");
@@ -98,7 +115,9 @@ const battleShipInterface = (() => {
     if (!col && !row) return;
     battleShipGame.gameLoop(col, row);
     renderComputerBoard();
+    declarePlayerWinner();
     renderPlayerBoard();
+    declarePlayerWinner();
   };
 
   renderComputerBoard();
