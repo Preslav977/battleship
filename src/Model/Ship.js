@@ -53,6 +53,12 @@ const battleShipLogic = (() => {
       return false;
     };
 
+    const resetNumberOfHits = () => {
+      if ((name === "carrier" && numberOfHits === 5) || numberOfHits > 0) {
+        numberOfHits = 0;
+      }
+    };
+
     return {
       get name() {
         return name;
@@ -83,6 +89,7 @@ const battleShipLogic = (() => {
       },
       hit,
       isSunk,
+      resetNumberOfHits,
     };
   };
 

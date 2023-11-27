@@ -209,3 +209,48 @@ test("Expecting PatrolBoat if has been hit once, to not be sunk", () => {
   patrolBoat.hit();
   expect(patrolBoat.isSunk()).toBe(false);
 });
+
+test("Expecting to after 1 hit to reset number of hits to the carrier to zero", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  carrier.hit();
+  carrier.resetNumberOfHits();
+  expect(carrier.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 2 hit to reset number of hits to the carrier to zero", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  carrier.hit();
+  carrier.hit();
+  carrier.resetNumberOfHits();
+  expect(carrier.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 3 hit to reset number of hits to the carrier to zero", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.resetNumberOfHits();
+  expect(carrier.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 4 hit to reset number of hits to the carrier to zero", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.resetNumberOfHits();
+  expect(carrier.numberOfHits).toBe(0);
+});
+
+test("Expecting to after 5 hit to reset number of hits to the carrier to zero", () => {
+  const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.hit();
+  carrier.resetNumberOfHits();
+  expect(carrier.numberOfHits).toBe(0);
+});
