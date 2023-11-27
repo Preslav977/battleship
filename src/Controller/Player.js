@@ -166,4 +166,18 @@ const battleShipGame = (() => {
   };
 })();
 
-export { battleShipGame, playerBoard, computerBoard };
+export {
+  battleShipGame,
+  playerBoard,
+  computerBoard,
+  carrier,
+  carrierAI,
+  battleShip,
+  battleShipAI,
+  destroyer,
+  destroyerAI,
+  subMarine,
+  subMarineAI,
+  patrolBoat,
+  patrolBoatAI,
+};

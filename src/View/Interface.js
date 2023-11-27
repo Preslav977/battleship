@@ -2,6 +2,16 @@ import {
   battleShipGame,
   playerBoard,
   computerBoard,
+  carrier,
+  carrierAI,
+  battleShip,
+  battleShipAI,
+  destroyer,
+  destroyerAI,
+  subMarine,
+  subMarineAI,
+  patrolBoat,
+  patrolBoatAI,
 } from "../Controller/Player";
 
 const battleShipInterface = (() => {
@@ -11,9 +21,20 @@ const battleShipInterface = (() => {
 
   const playerNameInformation = document.querySelector(".player-information");
 
+  const mainDialog = document.querySelector(".dialog");
+
   const displayWinner = document.querySelector(".display-winner");
 
   const showWinnerDialog = document.querySelector(".winner-dialog");
+
+  const playAgainButton = document.querySelector(".play-again");
+
+  // show the dialog
+  mainDialog.setAttribute("open", true);
+
+  // prevent from clicking on the boards, when the player is not even created
+  getPlayerBoard.style.pointerEvents = "none";
+  getComputerBoard.style.pointerEvents = "none";
 
   const resetForm = () => {
     playerNameInformation.reset();
@@ -29,6 +50,9 @@ const battleShipInterface = (() => {
     // e.preventDefault();
     createPlayer();
     battleShipGame.getPlayer();
+    // allow to click on the board after the player object is created
+    getPlayerBoard.style.pointerEvents = "auto";
+    getComputerBoard.style.pointerEvents = "auto";
     resetForm();
   });
 
@@ -117,12 +141,55 @@ const battleShipInterface = (() => {
     renderComputerBoard();
     declarePlayerWinner();
     renderPlayerBoard();
-    declarePlayerWinner();
+    declareComputerWinner();
   };
 
   renderComputerBoard();
 
   getComputerBoard.addEventListener("click", clickEventHandler);
+
+  const restartGame = () => {
+    playerBoard.clearBoard();
+
+    computerBoard.clearBoard();
+
+    carrier.resetNumberOfHits();
+
+    carrierAI.resetNumberOfHits();
+
+    battleShip.resetNumberOfHits();
+
+    battleShipAI.resetNumberOfHits();
+
+    destroyer.resetNumberOfHits();
+
+    destroyerAI.resetNumberOfHits();
+
+    subMarine.resetNumberOfHits();
+
+    subMarineAI.resetNumberOfHits();
+
+    patrolBoat.resetNumberOfHits();
+
+    patrolBoatAI.resetNumberOfHits();
+
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach((cell) => {
+      cell.remove(".cell");
+    });
+
+    battleShipGame.placeAllShipsWithHardcodedCoordinates();
+
+    renderPlayerBoard();
+
+    renderComputerBoard();
+
+    showWinnerDialog.removeAttribute("open");
+    // show the dialog again on new game
+    mainDialog.setAttribute("open", true);
+  };
+
+  playAgainButton.addEventListener("click", restartGame);
 
   return { renderPlayerBoard, renderComputerBoard };
 })();

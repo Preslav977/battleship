@@ -146,6 +146,17 @@ const battleShipBoard = (() => {
       }
     };
 
+    const clearBoard = () => {
+      for (let i = 0; i < cols; i += 1) {
+        board[i] = [];
+        for (let j = 0; j < rows; j += 1) {
+          if (board[i][j] !== "") {
+            board[i][j] = "";
+          }
+        }
+      }
+    };
+
     return {
       get board() {
         return [...board];
@@ -159,6 +170,7 @@ const battleShipBoard = (() => {
       areAllShipsSunk,
       checkForWin,
       checkForWinAI,
+      clearBoard,
     };
   };
 
