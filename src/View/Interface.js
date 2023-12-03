@@ -94,6 +94,8 @@ const battleShipInterface = (() => {
     resetForm();
   });
 
+  // TODO: Figure out a better way of rendering the ships/attacks/misses
+
   const renderPlayerBoard = () => {
     const cols = 10;
     const rows = 10;
@@ -173,84 +175,104 @@ const battleShipInterface = (() => {
   const handleShipsPlacedProperty = () => {
     if (carrier.isPlaced) {
       playerCarrierStatus.textContent = "Placed";
+      playerCarrierStatus.style.color = "green";
     }
 
     if (carrierAI.isPlaced) {
       computerCarrierStatus.textContent = "Placed";
+      computerCarrierStatus.style.color = "green";
     }
 
     if (battleShip.isPlaced) {
       playerBattleshipStatus.textContent = "Placed";
+      playerBattleshipStatus.style.color = "green";
     }
 
     if (battleShipAI.isPlaced) {
       computerBattleshipStatus.textContent = "Placed";
+      computerBattleshipStatus.style.color = "green";
     }
 
     if (destroyer.isPlaced) {
       playerDestroyerStatus.textContent = "Placed";
+      playerDestroyerStatus.style.color = "green";
     }
 
     if (destroyerAI.isPlaced) {
       computerDestroyerStatus.textContent = "Placed";
+      computerDestroyerStatus.style.color = "green";
     }
 
     if (subMarine.isPlaced) {
       playerSubmarineStatus.textContent = "Placed";
+      playerSubmarineStatus.style.color = "green";
     }
 
     if (subMarineAI.isPlaced) {
       computerSubmarineStatus.textContent = "Placed";
+      computerSubmarineStatus.style.color = "green";
     }
 
     if (patrolBoat.isPlaced) {
       playerPatrolBoatStatus.textContent = "Placed";
+      playerPatrolBoatStatus.style.color = "green";
     }
 
     if (patrolBoatAI.isPlaced) {
       computerPatrolBoatStatus.textContent = "Placed";
+      computerPatrolBoatStatus.style.color = "green";
     }
   };
 
   const handleShipsSunkProperty = () => {
     if (carrier.isSunk()) {
       playerCarrierStatus.textContent = "Sunk";
+      playerCarrierStatus.style.color = "red";
     }
 
     if (carrierAI.isSunk()) {
       computerCarrierStatus.textContent = "Sunk";
+      computerCarrierStatus.style.color = "red";
     }
 
     if (battleShip.isSunk()) {
       playerBattleshipStatus.textContent = "Sunk";
+      playerBattleshipStatus.style.color = "red";
     }
 
     if (battleShipAI.isSunk()) {
       computerBattleshipStatus.textContent = "Sunk";
+      computerBattleshipStatus.style.color = "red";
     }
 
     if (destroyer.isSunk()) {
       playerDestroyerStatus.textContent = "Sunk";
+      playerDestroyerStatus.style.color = "red";
     }
 
     if (destroyerAI.isSunk()) {
       computerDestroyerStatus.textContent = "Sunk";
+      computerDestroyerStatus.style.color = "red";
     }
 
     if (subMarine.isSunk()) {
       playerSubmarineStatus.textContent = "Sunk";
+      playerSubmarineStatus.style.color = "red";
     }
 
     if (subMarineAI.isSunk()) {
       computerSubmarineStatus.textContent = "Sunk";
+      computerSubmarineStatus.style.color = "red";
     }
 
     if (patrolBoat.isSunk()) {
       playerPatrolBoatStatus.textContent = "Sunk";
+      playerPatrolBoatStatus.style.color = "red";
     }
 
     if (patrolBoatAI.isSunk()) {
       computerPatrolBoatStatus.textContent = "Sunk";
+      computerPatrolBoatStatus.style.color = "red";
     }
   };
 

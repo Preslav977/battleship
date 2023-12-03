@@ -29,6 +29,9 @@ const battleShipBoard = (() => {
       return shipArray.every((cell) => cell === "");
     };
 
+    // TODO: figure out drag and drop or hovering with placing the ships
+    // in the future !!!
+
     const placeShip = (col, row, ship, direction) => {
       if (
         isCellAvailable(col, row, ship, direction) === true &&
@@ -104,6 +107,9 @@ const battleShipBoard = (() => {
       return "You cant hit the same spot";
     };
 
+    // TODO: Figure out a way to render only the misses from these
+    // method and the attacks separately
+
     const missedAttacksPlayer = (computerBoard) => {
       const getBoardCopy = computerBoard.board;
 
@@ -136,6 +142,10 @@ const battleShipBoard = (() => {
       return filteredMissedAttacks;
     };
 
+    // TODO: Figure a better way to know which ship has been sunk
+    // without checking for the object name and looping the saveShips array
+    // and variable that increments to five
+
     const areAllShipsSunk = () => {
       let sunkShips = 0;
 
@@ -163,6 +173,10 @@ const battleShipBoard = (() => {
       }
       return false;
     };
+
+    // TODO: Figure out better way to organize the code to avoid creating
+    // two methods one for the computerBoard and one for the playerBoard
+    // since the single responsibility rule is broken
 
     const checkForWin = (computerBoard) => {
       if (computerBoard.areAllShipsSunk()) {
@@ -194,6 +208,9 @@ const battleShipBoard = (() => {
         }
       }
     };
+
+    // TODO: Figure out better way to expose the board
+    // or some other way for each object
 
     return {
       get board() {

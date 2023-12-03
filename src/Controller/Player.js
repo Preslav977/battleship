@@ -5,6 +5,9 @@ import { battleShipLogic } from "../Model/Ship";
 
 import { battleShipBoard } from "../Model/Gameboard";
 
+// TODO: Figure out better way to store the objects, instead of hanging
+// in the global scope of this module
+
 const carrier = battleShipLogic.Ship("carrier", 5, 0, false, false);
 
 const carrierAI = battleShipLogic.Ship("carrier", 5, 0, false, false);
@@ -60,6 +63,8 @@ const battleShipGame = (() => {
     console.log(computerBoard.receiveAttack(col, row));
   };
 
+  // TODO: Figure out how to make the AI smarter
+
   const attackPlayerBoard = (playerBoard) => {
     let col = Math.floor(Math.floor(Math.random() * 10));
     let row = Math.floor(Math.floor(Math.random() * 10));
@@ -71,6 +76,9 @@ const battleShipGame = (() => {
       row = Math.floor(Math.floor(Math.random() * 10));
     }
   };
+
+  // TODO: Implement player placing system and after that either remove the
+  // random placing of the ships or make it so it can be used both
 
   const placeAllShipsRandomly = () => {
     playerBoard.isCellAvailable(1, 0, carrier, "vertical");
