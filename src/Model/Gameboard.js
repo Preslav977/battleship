@@ -53,6 +53,36 @@ const battleShipBoard = (() => {
       return board[col][row];
     };
 
+    const placeShipRandomly = (ship) => {
+      const col = Math.floor(Math.floor(Math.random() * 10));
+      const row = Math.floor(Math.floor(Math.random() * 10));
+      const shipDirection = ["vertical", "horizontal"];
+      const randomDirection = Math.floor(Math.random() * shipDirection.length);
+      const direction = shipDirection[randomDirection];
+
+      if (
+        isCellAvailable(col, row, ship, direction) === true &&
+        direction === "vertical"
+      ) {
+        for (let i = 0; i < ship.length; i += 1) {
+          board[col + i][row] = ship;
+          ship.isPlaced = true;
+        }
+      } else if (
+        isCellAvailable(col, row, ship, direction) === true &&
+        direction === "horizontal"
+      ) {
+        for (let i = 0; i < ship.length; i += 1) {
+          board[col][row + i] = ship;
+          ship.isPlaced = true;
+        }
+      } else if (!isCellAvailable(col, row, ship, direction) === true) {
+        throw new Error("Invalid ship placement");
+      }
+      saveShips.push(ship);
+      return ship;
+    };
+
     const printBoard = () => {
       board.forEach((cell) => {
         console.log(cell);
@@ -171,6 +201,7 @@ const battleShipBoard = (() => {
       },
       isCellAvailable,
       placeShip,
+      placeShipRandomly,
       printBoard,
       receiveAttack,
       missedAttacksPlayer,

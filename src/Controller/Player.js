@@ -1,3 +1,6 @@
+/* eslint-disable no-continue */
+/* eslint-disable no-unused-expressions */
+
 import { battleShipLogic } from "../Model/Ship";
 
 import { battleShipBoard } from "../Model/Gameboard";
@@ -28,11 +31,6 @@ const computerBoard = battleShipBoard.gameBoard();
 
 const battleShipGame = (() => {
   const Player = (name) => name;
-
-  // after the the game is started
-  // upon creating the player
-  // create the player object
-  // and the board objects
 
   let player;
 
@@ -74,46 +72,142 @@ const battleShipGame = (() => {
     }
   };
 
-  const placeAllShipsWithHardcodedCoordinates = () => {
+  const placeAllShipsRandomly = () => {
     playerBoard.isCellAvailable(1, 0, carrier, "vertical");
 
-    playerBoard.placeShip(1, 0, carrier, "vertical");
-
-    playerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
-
-    playerBoard.placeShip(1, 3, battleShip, "horizontal");
-
-    playerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
-
-    playerBoard.placeShip(3, 5, destroyer, "horizontal");
-
-    playerBoard.isCellAvailable(2, 4, subMarine, "vertical");
-
-    playerBoard.placeShip(2, 4, subMarine, "vertical");
-
-    playerBoard.isCellAvailable(6, 6, patrolBoat, "horizontal");
-
-    playerBoard.placeShip(6, 6, patrolBoat, "horizontal");
+    while (!carrier.isPlaced) {
+      try {
+        playerBoard.placeShipRandomly(carrier);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
 
     computerBoard.isCellAvailable(1, 0, carrierAI, "vertical");
 
-    computerBoard.placeShip(1, 0, carrierAI, "vertical");
+    while (!carrierAI.isPlaced) {
+      try {
+        computerBoard.placeShipRandomly(carrierAI);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
 
-    computerBoard.isCellAvailable(1, 3, battleShipAI, "horizontal");
+    playerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
 
-    computerBoard.placeShip(1, 3, battleShipAI, "horizontal");
+    while (!battleShip.isPlaced) {
+      try {
+        playerBoard.placeShipRandomly(battleShip);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
+
+    computerBoard.isCellAvailable(1, 3, battleShip, "horizontal");
+
+    while (!battleShipAI.isPlaced) {
+      try {
+        computerBoard.placeShipRandomly(battleShipAI);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
+
+    playerBoard.isCellAvailable(3, 5, destroyer, "horizontal");
+
+    while (!destroyer.isPlaced) {
+      try {
+        playerBoard.placeShipRandomly(destroyer);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
 
     computerBoard.isCellAvailable(3, 5, destroyerAI, "horizontal");
 
-    computerBoard.placeShip(3, 5, destroyerAI, "horizontal");
+    while (!destroyerAI.isPlaced) {
+      try {
+        computerBoard.placeShipRandomly(destroyerAI);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
+
+    playerBoard.isCellAvailable(2, 4, subMarine, "vertical");
+
+    while (!subMarine.isPlaced) {
+      try {
+        playerBoard.placeShipRandomly(subMarine);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
 
     computerBoard.isCellAvailable(2, 4, subMarineAI, "vertical");
 
-    computerBoard.placeShip(2, 4, subMarineAI, "vertical");
+    while (!subMarineAI.isPlaced) {
+      try {
+        computerBoard.placeShipRandomly(subMarineAI);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
+
+    playerBoard.isCellAvailable(8, 2, patrolBoat, "horizontal");
+
+    while (!patrolBoat.isPlaced) {
+      try {
+        playerBoard.placeShipRandomly(patrolBoat);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
 
     computerBoard.isCellAvailable(8, 2, patrolBoatAI, "horizontal");
 
-    computerBoard.placeShip(8, 2, patrolBoatAI, "horizontal");
+    while (!patrolBoatAI.isPlaced) {
+      try {
+        computerBoard.placeShipRandomly(patrolBoatAI);
+        break;
+      } catch {
+        ("Invalid ship placement");
+        continue;
+      }
+    }
+
+    if (
+      carrier.isPlaced &&
+      carrierAI.isPlaced &&
+      battleShip.isPlaced &&
+      battleShipAI.isPlaced &&
+      destroyer.isPlaced &&
+      destroyerAI.isPlaced &&
+      subMarine.isPlaced &&
+      subMarineAI.isPlaced &&
+      patrolBoat.isPlaced &&
+      patrolBoatAI.isPlaced
+    ) {
+      return true;
+    }
+    return false;
   };
 
   const gameLoop = (col, row) => {
@@ -121,30 +215,20 @@ const battleShipGame = (() => {
 
     computerBoard.printBoard();
 
-    console.log(
-      "Player missed attacks",
-      playerBoard.missedAttacksPlayer(computerBoard)
-    );
+    playerBoard.missedAttacksPlayer(computerBoard);
 
     if (playerBoard.checkForWin(computerBoard)) {
       // console.log(getPlayer(), "won!");
       return;
     }
 
-    // console.log("Are computer ships sunk", computerBoard.areAllShipsSunk());
-
     switchPlayersTurns();
 
     attackPlayerBoard(playerBoard);
 
-    playerBoard.printBoard();
+    // playerBoard.printBoard();
 
-    console.log(
-      "Computer missed attacks",
-      computerBoard.missedAttacksComputer(playerBoard)
-    );
-
-    // console.log("Are player ships sunk", playerBoard.areAllShipsSunk());
+    computerBoard.missedAttacksComputer(playerBoard);
 
     if (computerBoard.checkForWin(playerBoard)) {
       // console.log(getComputer().name, "won!");
@@ -153,6 +237,7 @@ const battleShipGame = (() => {
 
   return {
     Player,
+    placeAllShipsRandomly,
     setPlayer,
     setFirstPlayer,
     getPlayer,
@@ -161,7 +246,6 @@ const battleShipGame = (() => {
     attackComputerBoard,
     attackPlayerBoard,
     getFirstPlayer,
-    placeAllShipsWithHardcodedCoordinates,
     gameLoop,
   };
 })();

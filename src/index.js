@@ -4,7 +4,7 @@ import { battleShipInterface } from "./View/Interface";
 
 import { battleShipGame } from "./Controller/Player";
 
-battleShipGame.placeAllShipsWithHardcodedCoordinates();
+battleShipGame.placeAllShipsRandomly();
 
 battleShipInterface.renderPlayerBoard();
 
