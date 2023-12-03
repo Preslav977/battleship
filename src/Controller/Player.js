@@ -221,7 +221,7 @@ const battleShipGame = (() => {
   const gameLoop = (col, row) => {
     attackComputerBoard(col, row, computerBoard, getFirstPlayer());
 
-    computerBoard.printBoard();
+    // computerBoard.printBoard();
 
     playerBoard.missedAttacksPlayer(computerBoard);
 
