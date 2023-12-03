@@ -300,6 +300,26 @@ const battleShipInterface = (() => {
 
     patrolBoatAI.resetNumberOfHits();
 
+    carrier.isPlaced = false;
+
+    carrierAI.isPlaced = false;
+
+    battleShip.isPlaced = false;
+
+    battleShipAI.isPlaced = false;
+
+    destroyer.isPlaced = false;
+
+    destroyerAI.isPlaced = false;
+
+    subMarine.isPlaced = false;
+
+    subMarineAI.isPlaced = false;
+
+    patrolBoat.isPlaced = false;
+
+    patrolBoatAI.isPlaced = false;
+
     const cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
       cell.remove(".cell");
