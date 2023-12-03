@@ -9,3 +9,5 @@ battleShipGame.placeAllShipsRandomly();
 battleShipInterface.renderPlayerBoard();
 
 battleShipInterface.renderComputerBoard();
+
+battleShipInterface.handleShipsPlacedProperty();

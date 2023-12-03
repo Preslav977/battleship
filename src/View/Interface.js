@@ -29,6 +29,44 @@ const battleShipInterface = (() => {
 
   const playAgainButton = document.querySelector(".play-again");
 
+  const playerCarrierStatus = document.querySelector(".player-carrier-status");
+
+  const playerBattleshipStatus = document.querySelector(
+    ".player-battleship-status"
+  );
+
+  const playerDestroyerStatus = document.querySelector(
+    ".player-destroyer-status"
+  );
+
+  const playerSubmarineStatus = document.querySelector(
+    ".player-submarine-status"
+  );
+
+  const playerPatrolBoatStatus = document.querySelector(
+    ".player-patrolboat-status"
+  );
+
+  const computerCarrierStatus = document.querySelector(
+    ".computer-carrier-status"
+  );
+
+  const computerBattleshipStatus = document.querySelector(
+    ".computer-battleship-status"
+  );
+
+  const computerDestroyerStatus = document.querySelector(
+    ".computer-destroyer-status"
+  );
+
+  const computerSubmarineStatus = document.querySelector(
+    ".computer-submarine-status"
+  );
+
+  const computerPatrolBoatStatus = document.querySelector(
+    ".computer-patrolboat-status"
+  );
+
   // show the dialog
   mainDialog.setAttribute("open", true);
 
@@ -132,12 +170,97 @@ const battleShipInterface = (() => {
     }
   };
 
+  const handleShipsPlacedProperty = () => {
+    if (carrier.isPlaced) {
+      playerCarrierStatus.textContent = "Placed";
+    }
+
+    if (carrierAI.isPlaced) {
+      computerCarrierStatus.textContent = "Placed";
+    }
+
+    if (battleShip.isPlaced) {
+      playerBattleshipStatus.textContent = "Placed";
+    }
+
+    if (battleShipAI.isPlaced) {
+      computerBattleshipStatus.textContent = "Placed";
+    }
+
+    if (destroyer.isPlaced) {
+      playerDestroyerStatus.textContent = "Placed";
+    }
+
+    if (destroyerAI.isPlaced) {
+      computerDestroyerStatus.textContent = "Placed";
+    }
+
+    if (subMarine.isPlaced) {
+      playerSubmarineStatus.textContent = "Placed";
+    }
+
+    if (subMarineAI.isPlaced) {
+      computerSubmarineStatus.textContent = "Placed";
+    }
+
+    if (patrolBoat.isPlaced) {
+      playerPatrolBoatStatus.textContent = "Placed";
+    }
+
+    if (patrolBoatAI.isPlaced) {
+      computerPatrolBoatStatus.textContent = "Placed";
+    }
+  };
+
+  const handleShipsSunkProperty = () => {
+    if (carrier.isSunk()) {
+      playerCarrierStatus.textContent = "Sunk";
+    }
+
+    if (carrierAI.isSunk()) {
+      computerCarrierStatus.textContent = "Sunk";
+    }
+
+    if (battleShip.isSunk()) {
+      playerBattleshipStatus.textContent = "Sunk";
+    }
+
+    if (battleShipAI.isSunk()) {
+      computerBattleshipStatus.textContent = "Sunk";
+    }
+
+    if (destroyer.isSunk()) {
+      playerDestroyerStatus.textContent = "Sunk";
+    }
+
+    if (destroyerAI.isSunk()) {
+      computerDestroyerStatus.textContent = "Sunk";
+    }
+
+    if (subMarine.isSunk()) {
+      playerSubmarineStatus.textContent = "Sunk";
+    }
+
+    if (subMarineAI.isSunk()) {
+      computerSubmarineStatus.textContent = "Sunk";
+    }
+
+    if (patrolBoat.isSunk()) {
+      playerPatrolBoatStatus.textContent = "Sunk";
+    }
+
+    if (patrolBoatAI.isSunk()) {
+      computerPatrolBoatStatus.textContent = "Sunk";
+    }
+  };
+
   const clickEventHandler = (e) => {
     const clickedCell = e.target;
     const col = clickedCell.getAttribute("data-col");
     const row = clickedCell.getAttribute("data-row");
     if (!col && !row) return;
     battleShipGame.gameLoop(col, row);
+    handleShipsSunkProperty();
     renderComputerBoard();
     declarePlayerWinner();
     renderPlayerBoard();
@@ -182,7 +305,9 @@ const battleShipInterface = (() => {
       cell.remove(".cell");
     });
 
-    battleShipGame.placeAllShipsWithHardcodedCoordinates();
+    battleShipGame.placeAllShipsRandomly();
+
+    handleShipsPlacedProperty();
 
     renderPlayerBoard();
 
@@ -195,11 +320,7 @@ const battleShipInterface = (() => {
 
   playAgainButton.addEventListener("click", restartGame);
 
-  return { renderPlayerBoard, renderComputerBoard };
+  return { renderPlayerBoard, renderComputerBoard, handleShipsPlacedProperty };
 })();
-
-battleShipInterface.renderPlayerBoard();
-
-battleShipInterface.renderComputerBoard();
 
 export { battleShipInterface };

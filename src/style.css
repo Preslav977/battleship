@@ -14,7 +14,8 @@ body {
 .header {
   display: flex;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .header-name {
@@ -57,12 +58,11 @@ body {
   width: 250px;
   height: 250px;
   left: 640px;
-  top: 250px;
+  top: 180px;
   outline: 1px solid black;
 }
 
-.dialog-container-wrapper,
-.winner-dialog-container {
+.dialog-container-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,6 +79,11 @@ body {
   padding-top: 10px;
   padding-left: 30px;
   padding-right: 20px;
+}
+
+.instructions {
+  margin-top: 10px;
+  width: 220px;
 }
 
 .player-information {
@@ -101,13 +106,64 @@ body {
 }
 
 .dialog-content {
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 80px;
 }
 
-.play-again {
-  margin-top: 30px;
+.display-winner {
+  margin-bottom: 10px;
+}
+
+.space-is-empty {
+  background-color: lightgreen;
+}
+
+.space-is-not-empty {
+  background-color: red;
+}
+
+.container {
+  /* outline: 2px solid black; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.player-board-status-container,
+.computer-board-status-container {
+  /* outline: 2px solid blue; */
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.player-ship-carrier,
+.player-ship-battleship,
+.player-ship-destroyer,
+.player-ship-submarine,
+.player-ship-patrolboat,
+.computer-ship-carrier,
+.computer-ship-battleship,
+.computer-ship-destroyer,
+.computer-ship-submarine,
+.computer-ship-patrolboat {
+  margin-right: 5px;
+}
+
+.player-carrier-status-container,
+.player-battleship-status-container,
+.player-destroyer-status-container,
+.player-submarine-status-container,
+.player-patrolboat-status-container,
+.computer-carrier-status-container,
+.computer-battleship-status-container,
+.computer-destroyer-status-container,
+.computer-submarine-status-container,
+.computer-patrolboat-status-container {
+  display: flex;
 }
